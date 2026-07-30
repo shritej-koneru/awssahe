@@ -36,7 +36,7 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
       </head>
-      <body className="min-h-full">
+      <body className="min-h-full" suppressHydrationWarning>
         <div className="grain-overlay" aria-hidden="true" />
         {children}
       </body>
