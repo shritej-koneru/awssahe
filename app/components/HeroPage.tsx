@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import {
   motion,
   useMotionValue,
@@ -11,6 +11,7 @@ import {
 import Navbar from "./Navbar";
 import BackgroundGraphics from "./BackgroundGraphics";
 import AboutSection from "./AboutSection";
+import Footer from "./Footer";
 import {
   staggerLetters,
   letterUp,
@@ -25,6 +26,72 @@ import {
 const buildLetters = "BUILD".split("");
 const beyondLetters = "BEYOND".split("");
 
+function SlideButton({
+  label,
+  arrow,
+  fill,
+  idleText,
+  hoverText,
+  className = "",
+  style,
+}: {
+  label: string;
+  arrow?: string;
+  fill: string;
+  idleText: string;
+  hoverText: string;
+  className?: string;
+  style?: React.CSSProperties;
+}) {
+  const [hovered, setHovered] = useState(false);
+
+  return (
+    <motion.button
+      style={style}
+      className={`relative inline-flex cursor-pointer items-center justify-center overflow-hidden font-display text-lg uppercase leading-none outline-none focus-visible:ring-2 focus-visible:ring-[#ff9900] focus-visible:ring-offset-2 focus-visible:ring-offset-black ${className}`}
+      variants={ctaButton}
+      initial="hidden"
+      animate="visible"
+      onHoverStart={() => setHovered(true)}
+      onHoverEnd={() => setHovered(false)}
+      whileHover={{ y: -4, boxShadow: "0 0 20px rgba(255,153,0,0.35)" }}
+      whileTap={{ scale: 0.96 }}
+      transition={{ type: "spring", stiffness: 200, damping: 15 }}
+    >
+      <motion.span
+        aria-hidden
+        className="absolute inset-0"
+        style={{ backgroundColor: fill }}
+        initial={false}
+        animate={{ x: hovered ? "0%" : "100%" }}
+        transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+      />
+      <span
+        className="relative z-10"
+        style={{
+          color: hovered ? hoverText : idleText,
+          transition: "color 0.3s ease",
+        }}
+      >
+        {label}
+      </span>
+      {arrow && (
+        <motion.span
+          className="relative z-10 ml-1 inline-block"
+          style={{
+            color: hovered ? hoverText : idleText,
+            transition: "color 0.3s ease",
+          }}
+          animate={{ x: hovered ? 6 : 0 }}
+          transition={{ type: "spring", stiffness: 200, damping: 15 }}
+        >
+          {arrow}
+        </motion.span>
+      )}
+    </motion.button>
+  );
+}
+
 export default function HeroPage() {
   const sectionRef = useRef<HTMLElement>(null);
 
@@ -32,12 +99,14 @@ export default function HeroPage() {
 
   const titleScrollY = useTransform(scrollY, [0, 500], [0, -30]);
   const titleOpacity = useTransform(scrollY, [0, 500], [1, 0.6]);
-  const bgScrollY = useTransform(scrollY, [0, 500], [0, 15]);
 
   const xIconX = useMotionValue(0);
   const xIconY = useMotionValue(0);
   const xIconSmoothX = useSpring(xIconX, { damping: 30, stiffness: 200 });
   const xIconSmoothY = useSpring(xIconY, { damping: 30, stiffness: 200 });
+
+  const tiltX = useTransform(xIconSmoothX, [-8, 8], [6, -6]);
+  const tiltY = useTransform(xIconSmoothY, [-8, 8], [6, -6]);
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!sectionRef.current) return;
@@ -55,19 +124,38 @@ export default function HeroPage() {
 
   return (
     <>
+      <Navbar />
       <section
         ref={sectionRef}
         className="relative min-h-screen bg-black text-white overflow-hidden"
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
       >
+        <div className="absolute inset-0 bg-[url('/bg-hero.png')] bg-cover bg-center bg-no-repeat" />
+
         <motion.div
-          className="absolute inset-0 bg-[url('/bg-hero.png')] bg-cover bg-center bg-no-repeat"
-          style={{ y: bgScrollY }}
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(circle at 20% 20%, rgba(255,153,0,0.10), transparent 45%)",
+          }}
+          animate={{ opacity: [0.6, 1, 0.6] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="pointer-events-none absolute h-[50vh] w-[50vh] rounded-full"
+          style={{
+            top: "10%",
+            left: "50%",
+            transform: "translateX(-50%)",
+            filter: "blur(100px)",
+            background: "radial-gradient(circle, rgba(255,153,0,0.14), transparent 70%)",
+          }}
+          animate={{ x: [0, 80, -60, 0], y: [0, -40, 50, 0] }}
+          transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
         />
 
         <div className="relative z-10">
-          <Navbar />
           <BackgroundGraphics />
 
           <div className="mx-auto flex min-h-screen max-w-[1536px] flex-col items-center justify-center px-[30px] pt-20">
@@ -75,7 +163,14 @@ export default function HeroPage() {
               style={{ paddingTop: "30px" }}
               className="max-w-[900px] text-center flex flex-col gap-4"
             >
-              <div className="relative inline-block">
+              <motion.div
+                className="relative inline-block"
+                style={{
+                  rotateX: tiltY,
+                  rotateY: tiltX,
+                  transformPerspective: 1000,
+                }}
+              >
                 <div className="flex flex-col">
                   <div className="flex items-end justify-center gap-6">
                     <motion.div
@@ -156,7 +251,7 @@ export default function HeroPage() {
                     ))}
                   </motion.div>
                 </div>
-              </div>
+              </motion.div>
 
               <motion.div
                 className="mx-auto mt-20 max-w-[650px]"
@@ -164,7 +259,7 @@ export default function HeroPage() {
                 initial="hidden"
                 animate="visible"
               >
-                <p className="text-lg uppercase leading-9 tracking-[0.18em] text-gray-200">
+                <p className="font-body text-lg uppercase leading-9 tracking-[0.18em] text-gray-200">
                   Empowering peers to build, deploy and scale the future with AWS.
                 </p>
               </motion.div>
@@ -175,55 +270,25 @@ export default function HeroPage() {
                 initial="hidden"
                 animate="visible"
               >
-                <motion.button
+                <SlideButton
+                  label="Explore"
+                  arrow="→"
+                  fill="#000000"
+                  idleText="#000000"
+                  hoverText="#ff9900"
+                  className="rounded-lg bg-[#ff9900] px-24 py-10"
                   style={{ padding: "15px 40px" }}
-                  className="inline-flex rounded-lg items-center justify-center bg-[#ff9900] px-24 py-10 font-display text-lg uppercase leading-none text-black outline-none focus-visible:ring-2 focus-visible:ring-[#ff9900] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-                  variants={ctaButton}
-                  whileHover={{
-                    y: -4,
-                    boxShadow: "0 8px 30px rgba(0,0,0,0.3)",
-                    filter: "brightness(1.1)",
-                  }}
-                  whileTap={{ scale: 0.96 }}
-                  transition={{ type: "spring", stiffness: 200, damping: 15 }}
-                >
-                  <span>Explore</span>
-                  <motion.span
-                    className="inline-block ml-1"
-                    whileHover={{ x: 6, scaleX: 1.3 }}
-                    transition={{ type: "spring", stiffness: 200, damping: 15 }}
-                  >
-                    →
-                  </motion.span>
-                </motion.button>
+                />
 
-                <motion.button
+                <SlideButton
+                  label="Join Us"
+                  arrow="→"
+                  fill="#ff9900"
+                  idleText="#ff9900"
+                  hoverText="#000000"
+                  className="border border-[#ff9900] px-10 py-4"
                   style={{ padding: "15px 40px" }}
-                  className="relative inline-flex overflow-hidden items-center justify-center border border-[#ff9900] px-10 py-4 font-display text-lg uppercase leading-none outline-none focus-visible:ring-2 focus-visible:ring-[#ff9900] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-                  variants={ctaButton}
-                  whileHover={{
-                    y: -4,
-                    boxShadow: "0 0 20px rgba(255,153,0,0.3)",
-                  }}
-                  whileTap={{ scale: 0.96 }}
-                  transition={{ type: "spring", stiffness: 200, damping: 15 }}
-                >
-                  <motion.span
-                    className="absolute inset-0 bg-[#ff9900]"
-                    initial={{ scaleX: 0 }}
-                    whileHover={{ scaleX: 1 }}
-                    style={{ originX: 0 }}
-                    transition={{ duration: 0.3, ease: "easeOut" }}
-                  />
-                  <span className="relative z-10">Join Us</span>
-                  <motion.span
-                    className="relative z-10 inline-block ml-1"
-                    whileHover={{ x: 4 }}
-                    transition={{ type: "spring", stiffness: 200, damping: 15 }}
-                  >
-                    →
-                  </motion.span>
-                </motion.button>
+                />
               </motion.div>
             </div>
           </div>
@@ -231,6 +296,7 @@ export default function HeroPage() {
       </section>
 
       <AboutSection />
+      <Footer />
     </>
   );
 }

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Bebas_Neue, Inter_Tight } from "next/font/google";
+import { Bebas_Neue, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 
 const display = Bebas_Neue({
@@ -8,9 +8,9 @@ const display = Bebas_Neue({
   variable: "--font-display",
 });
 
-const body = Inter_Tight({
+const body = Space_Grotesk({
   subsets: ["latin"],
-  weight: ["400", "600", "700", "800"],
+  weight: ["400", "500", "600", "700"],
   variable: "--font-body",
 });
 
