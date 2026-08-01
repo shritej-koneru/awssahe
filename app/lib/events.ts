@@ -38,7 +38,7 @@ export const events: ClubEvent[] = [
     category: "Workshop",
     date: "Saturday, August 22, 2026",
     time: "9:00 AM – 4:30 PM",
-    venue: "Seminar Hall, Block C — SAHE Campus, Vijayawada",
+    venue: "VL Block CSE Seminar Hall - 1",
     mode: "Hybrid",
     eligibility:
       "Open to every student at SAHE — all years, all branches. No prior AWS or cloud experience needed. Bring your laptop and your curiosity.",
@@ -105,7 +105,7 @@ export const events: ClubEvent[] = [
     category: "Session",
     date: "Saturday, February 14, 2026",
     time: "10:00 AM – 1:00 PM",
-    venue: "Auditorium, Block A — SAHE Campus, Vijayawada",
+    venue: "VL Block CSE Seminar Hall - 1",
     mode: "In-Person",
     eligibility:
       "Open to all students of SAHE. No prior experience required — perfect for first-years discovering the cloud for the first time.",
@@ -151,7 +151,7 @@ export const events: ClubEvent[] = [
     category: "Workshop",
     date: "Saturday, April 4, 2026",
     time: "9:30 AM – 3:30 PM",
-    venue: "Computer Lab, Block C — SAHE Campus, Vijayawada",
+    venue: "VL Block CSE Seminar Hall - 1",
     mode: "In-Person",
     eligibility:
       "Open to all SAHE students. Attendance at the AWS Discovery Session or basic familiarity with the AWS console was recommended.",

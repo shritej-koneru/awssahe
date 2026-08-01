@@ -109,85 +109,80 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
 
       {/* Main row: [College Logo] S A H E × [AWS Logo] */}
       <div
-        className="absolute flex items-center justify-center"
-        style={{
-          top: "36%",
-          left: 0,
-          right: 0,
-          zIndex: 3,
-          gap: "clamp(0.75rem, 1.5vw, 2.5rem)",
-        }}
+        className="loader-row absolute left-0 right-0 z-[3] top-1/2 md:top-[36%] -translate-y-1/2 md:translate-y-0"
       >
-        {/* College Logo */}
-        <motion.div
-          className="flex items-center justify-center overflow-hidden"
-          style={{
-            width: "clamp(3rem, 10vw, 11rem)",
-            height: "clamp(3rem, 10vw, 11rem)",
-          }}
-          initial={{ clipPath: "inset(0 100% 0 0)" }}
-          animate={
-            atLeast("logo")
-              ? { clipPath: "inset(0 0% 0 0)" }
-              : { clipPath: "inset(0 100% 0 0)" }
-          }
-          transition={{ duration: 0.55, ease: EASE }}
+        {/* College Logo + SAHE letters (same row) */}
+        <div
+          className="loader-brand"
+          style={{ display: "flex", alignItems: "center", gap: "clamp(0.5rem, 2vw, 1.25rem)" }}
         >
-          <Image
-            src="/sahe-logo.png"
-            alt="SAHE College"
-            width={72}
-            height={72}
-            className="object-contain w-full h-full"
-            priority
-          />
-        </motion.div>
-
-        {/* SAHE letters */}
-        {LETTERS.map((letter, i) => (
-          <motion.span
-            key={letter}
-            style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "clamp(3.5rem, 12vw, 14rem)",
-              lineHeight: 0.85,
-              letterSpacing: "-0.02em",
-              color: "#ffffff",
-              display: "inline-block",
-              willChange: "transform, clip-path, filter",
-            }}
-            initial={{
-              clipPath: LETTER_CLIP[letter],
-              x: LETTER_OFFSET[letter].x,
-              y: LETTER_OFFSET[letter].y,
-              filter: "blur(8px)",
-            }}
+          {/* College Logo */}
+          <motion.div
+            className="loader-logo flex items-center justify-center overflow-hidden"
+            style={{}}
+            initial={{ clipPath: "inset(0 100% 0 0)" }}
             animate={
-              atLeast("letters")
-                ? {
-                    clipPath: "inset(0 0% 0 0)",
-                    x: 0,
-                    y: 0,
-                    filter: "blur(0px)",
-                  }
-                : {}
+              atLeast("logo")
+                ? { clipPath: "inset(0 0% 0 0)" }
+                : { clipPath: "inset(0 100% 0 0)" }
             }
-            transition={{
-              duration: LETTER_DURATION,
-              ease: EASE,
-              delay: i * STAGGER,
-            }}
+            transition={{ duration: 0.55, ease: EASE }}
           >
-            {letter}
-          </motion.span>
-        ))}
+            <Image
+              src="/sahe-logo.png"
+              alt="SAHE College"
+              width={72}
+              height={72}
+              className="object-contain w-full h-full"
+              priority
+            />
+          </motion.div>
+
+          {/* SAHE letters */}
+          <div style={{ display: "flex", alignItems: "center" }}>
+            {LETTERS.map((letter, i) => (
+              <motion.span
+                key={letter}
+                className="loader-letter"
+                style={{
+                  fontFamily: "var(--font-display)",
+                  lineHeight: 0.85,
+                  letterSpacing: "-0.02em",
+                  color: "#ffffff",
+                  display: "inline-block",
+                  willChange: "transform, clip-path, filter",
+                }}
+                initial={{
+                  clipPath: LETTER_CLIP[letter],
+                  x: LETTER_OFFSET[letter].x,
+                  y: LETTER_OFFSET[letter].y,
+                  filter: "blur(8px)",
+                }}
+                animate={
+                  atLeast("letters")
+                    ? {
+                        clipPath: "inset(0 0% 0 0)",
+                        x: 0,
+                        y: 0,
+                        filter: "blur(0px)",
+                      }
+                    : {}
+                }
+                transition={{
+                  duration: LETTER_DURATION,
+                  ease: EASE,
+                  delay: i * STAGGER,
+                }}
+              >
+                {letter}
+              </motion.span>
+            ))}
+          </div>
+        </div>
 
         {/* × symbol */}
         <motion.div
-          style={{
-            width: "clamp(24px, 3vw, 44px)",
-            height: "clamp(24px, 3vw, 44px)",
-          }}
+          className="loader-cross"
           initial={{ scale: 0 }}
           animate={atLeast("cross") ? { scale: 1 } : { scale: 0 }}
           transition={{ duration: 0.35, ease: EASE }}
@@ -227,11 +222,8 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
 
         {/* AWS Logo */}
         <motion.div
-          className="flex items-center justify-center overflow-hidden"
-          style={{
-            width: "clamp(3rem, 10vw, 11rem)",
-            height: "clamp(3rem, 10vw, 11rem)",
-          }}
+          className="loader-logo flex items-center justify-center overflow-hidden"
+          style={{}}
           initial={{ clipPath: "inset(0 0 0 100%)" }}
           animate={
             atLeast("aws")

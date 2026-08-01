@@ -34,6 +34,7 @@ function SlideButton({
   hoverText,
   className = "",
   style,
+  onClick,
 }: {
   label: string;
   arrow?: string;
@@ -42,12 +43,14 @@ function SlideButton({
   hoverText: string;
   className?: string;
   style?: React.CSSProperties;
+  onClick?: () => void;
 }) {
   const [hovered, setHovered] = useState(false);
 
   return (
     <motion.button
       style={style}
+      onClick={onClick}
       className={`relative inline-flex cursor-pointer items-center justify-center overflow-hidden font-display text-lg uppercase leading-none outline-none focus-visible:ring-2 focus-visible:ring-[#ff9900] focus-visible:ring-offset-2 focus-visible:ring-offset-black ${className}`}
       variants={ctaButton}
       initial="hidden"
@@ -158,10 +161,17 @@ export default function HeroPage() {
         <div className="relative z-10">
           <BackgroundGraphics />
 
-          <div className="mx-auto flex min-h-screen max-w-[1536px] flex-col items-center justify-center px-[30px] pt-20">
+          <div
+            className="hero-top-pad flex min-h-screen max-w-[1536px] flex-col items-center justify-center"
+            style={{
+              marginLeft: "auto",
+              marginRight: "auto",
+              paddingLeft: "clamp(16px, 4vw, 30px)",
+              paddingRight: "clamp(16px, 4vw, 30px)",
+            }}
+          >
             <div
-              style={{ paddingTop: "30px" }}
-              className="max-w-[900px] text-center flex flex-col gap-4"
+              className="hero-inner-top-pad max-w-[900px] text-center flex flex-col gap-4 md:gap-0"
             >
               <motion.div
                 className="relative inline-block"
@@ -171,8 +181,8 @@ export default function HeroPage() {
                   transformPerspective: 1000,
                 }}
               >
-                <div className="flex flex-col">
-                  <div className="flex items-end justify-center gap-6">
+                <div className="flex flex-col items-center">
+                  <div className="flex items-end justify-center gap-4 sm:gap-6">
                     <motion.div
                       className="overflow-hidden flex"
                       style={{ y: titleScrollY, opacity: titleOpacity }}
@@ -182,7 +192,7 @@ export default function HeroPage() {
                     >
                       {buildLetters.map((letter, i) => (
                         <div key={i} className="overflow-hidden" style={i > 0 ? { marginLeft: "-0.04em" } : undefined}>
-                          <motion.span className="inline-block font-display text-[11rem] font-black uppercase leading-none tracking-[-0.04em]" variants={letterUp}>
+                          <motion.span className="inline-block font-display text-[clamp(3.25rem,25vw,10.5rem)] font-black uppercase leading-none tracking-[-0.04em]" variants={letterUp}>
                             {letter}
                           </motion.span>
                         </div>
@@ -190,8 +200,8 @@ export default function HeroPage() {
                     </motion.div>
 
                     <motion.button
-                      style={{ marginBottom: "20px", x: xIconSmoothX, y: xIconSmoothY }}
-                      className="flex h-14 w-14 items-center justify-center border border-[#ff9900] text-[#ff9900] outline-none focus-visible:ring-2 focus-visible:ring-[#ff9900] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                      style={{ marginBottom: "clamp(8px, 3vw, 20px)", x: xIconSmoothX, y: xIconSmoothY }}
+                      className="flex h-10 w-10 items-center justify-center border border-[#ff9900] text-[#ff9900] outline-none focus-visible:ring-2 focus-visible:ring-[#ff9900] focus-visible:ring-offset-2 focus-visible:ring-offset-black sm:h-14 sm:w-14"
                       variants={xButton}
                       initial="hidden"
                       animate="visible"
@@ -215,7 +225,7 @@ export default function HeroPage() {
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
-                          className="h-6 w-6"
+                          className="h-5 w-5 sm:h-6 sm:w-6"
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
@@ -232,7 +242,7 @@ export default function HeroPage() {
                   </div>
 
                   <motion.div
-                    className="overflow-hidden flex"
+                    className="overflow-hidden flex justify-center"
                     style={{ y: titleScrollY, opacity: titleOpacity }}
                     variants={staggerLettersBeyond}
                     initial="hidden"
@@ -241,8 +251,8 @@ export default function HeroPage() {
                     {beyondLetters.map((letter, i) => (
                       <div key={i} className="overflow-hidden" style={i > 0 ? { marginLeft: "-0.04em" } : undefined}>
                         <motion.span
-                          style={{ marginTop: "-20px" }}
-                          className="inline-block font-display text-[11rem] font-black uppercase leading-none tracking-[-0.04em] text-[#ff9900]"
+                          style={{ marginTop: "clamp(-12px, -3vw, -20px)" }}
+                          className="inline-block font-display text-[clamp(3.25rem,25vw,10.5rem)] font-black uppercase leading-none tracking-[-0.04em] text-[#ff9900]"
                           variants={letterUpBeyond}
                         >
                           {letter}
@@ -254,18 +264,26 @@ export default function HeroPage() {
               </motion.div>
 
               <motion.div
-                className="mx-auto mt-20 max-w-[650px]"
+                className="hero-caption-pad max-w-[650px]"
+                style={{ marginLeft: "auto", marginRight: "auto" }}
                 variants={paragraph}
                 initial="hidden"
                 animate="visible"
               >
-                <p className="font-body text-lg uppercase leading-9 tracking-[0.18em] text-gray-200">
+                <p
+                  className="font-body uppercase text-gray-200"
+                  style={{
+                    fontSize: "clamp(0.875rem, 3.4vw, 1.125rem)",
+                    lineHeight: 1.9,
+                    letterSpacing: "0.14em",
+                  }}
+                >
                   Empowering peers to build, deploy and scale the future with AWS.
                 </p>
               </motion.div>
 
               <motion.div
-                className="mt-15 flex justify-center gap-6"
+                className="hero-cta-pad flex items-center justify-center gap-3 sm:flex-row sm:gap-6"
                 variants={ctaContainer}
                 initial="hidden"
                 animate="visible"
@@ -276,8 +294,11 @@ export default function HeroPage() {
                   fill="#000000"
                   idleText="#000000"
                   hoverText="#ff9900"
-                  className="rounded-lg bg-[#ff9900] px-24 py-10"
-                  style={{ padding: "15px 40px" }}
+                  className="rounded-lg bg-[#ff9900]"
+                  style={{ padding: "14px clamp(20px, 5vw, 44px)" }}
+                  onClick={() => {
+                    window.location.href = "/events";
+                  }}
                 />
 
                 <SlideButton
@@ -286,8 +307,11 @@ export default function HeroPage() {
                   fill="#ff9900"
                   idleText="#ff9900"
                   hoverText="#000000"
-                  className="border border-[#ff9900] px-10 py-4"
-                  style={{ padding: "15px 40px" }}
+                  className="border border-[#ff9900]"
+                  style={{ padding: "14px clamp(20px, 5vw, 44px)" }}
+                  onClick={() => {
+                    window.location.href = "/join";
+                  }}
                 />
               </motion.div>
             </div>

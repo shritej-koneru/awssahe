@@ -311,8 +311,8 @@ export default function TeamPage() {
             }}
           >
             <MemberCard member={dept.lead} role="Lead" variant="lead" />
-            {dept.coLeads.map((member) => (
-              <MemberCard key={member.name} member={member} role="Co-Lead" variant="colead" />
+            {dept.coLeads.map((member, i) => (
+              <MemberCard key={`${dept.title}-${i}`} member={member} role="Co-Lead" variant="colead" />
             ))}
           </motion.div>
         </section>

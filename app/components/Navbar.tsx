@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { Slash, ArrowUpRight } from "lucide-react";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 import {
   logo,
@@ -17,6 +17,9 @@ const navItems = [
   { name: "Team", href: "/team" },
   { name: "Join", href: "/join" },
 ];
+
+const meetupUrl =
+  "https://www.meetup.com/aws-sbg-at-velagapudi-ramakrishna-siddhartha-engineering-col/";
 
 export default function Navbar() {
   const [hidden, setHidden] = useState(false);
@@ -86,10 +89,32 @@ export default function Navbar() {
               </ul>
             </nav>
 
+            <motion.a
+              href={meetupUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Open Meetup"
+              className="group hidden h-11 w-11 shrink-0 items-center justify-center rounded-md border border-[#ff9900] outline-none transition-colors focus-visible:ring-2 focus-visible:ring-[#ff9900] focus-visible:ring-offset-2 focus-visible:ring-offset-black md:flex"
+              variants={navArrowBtn}
+              initial="hidden"
+              animate="visible"
+              whileHover={{
+                scale: 1.05,
+                boxShadow: "0 0 20px rgba(255,153,0,0.25)",
+              }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: "spring", stiffness: 300, damping: 15 }}
+            >
+              <ArrowUpRight
+                size={20}
+                className="text-[#ff9900] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              />
+            </motion.a>
+
             <motion.button
               aria-label={menuOpen ? "Close menu" : "Open menu"}
               onClick={() => setMenuOpen((open) => !open)}
-              className="group flex h-11 w-11 shrink-0 items-center justify-center rounded-md border border-[#ff9900] outline-none transition-colors focus-visible:ring-2 focus-visible:ring-[#ff9900] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+              className="group flex h-11 w-11 shrink-0 items-center justify-center rounded-md border border-[#ff9900] outline-none transition-colors focus-visible:ring-2 focus-visible:ring-[#ff9900] focus-visible:ring-offset-2 focus-visible:ring-offset-black md:hidden"
               variants={navArrowBtn}
               initial="hidden"
               animate="visible"
@@ -128,7 +153,7 @@ export default function Navbar() {
                     exit={{ rotate: -90, opacity: 0 }}
                     transition={{ duration: 0.25 }}
                   >
-                    <ArrowUpRight size={20} className="text-[#ff9900]" />
+                    <Slash size={14} className="text-[#ff9900]" />
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -140,7 +165,7 @@ export default function Navbar() {
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            className="fixed inset-0 z-40 flex flex-col justify-center bg-[#0b0b0b] px-[30px] md:px-16"
+            className="fixed inset-0 z-40 flex flex-col justify-center bg-[#0b0b0b] px-[30px] md:hidden md:px-16"
             initial={{ clipPath: "inset(0 0 100% 0)" }}
             animate={{ clipPath: "inset(0 0 0% 0)" }}
             exit={{ clipPath: "inset(0 0 100% 0)" }}
@@ -168,15 +193,6 @@ export default function Navbar() {
                 </motion.li>
               ))}
             </ul>
-            <motion.p
-              className="mt-14 font-body text-[0.75rem] uppercase tracking-[0.35em] text-white/40"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ delay: 0.5 }}
-            >
-              Siddhartha Academy of Higher Education — Vijayawada
-            </motion.p>
           </motion.div>
         )}
       </AnimatePresence>
