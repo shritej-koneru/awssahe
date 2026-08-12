@@ -6,7 +6,11 @@ import Footer from "../components/Footer";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" as const } },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" as const },
+  },
 };
 
 const containerStagger = {
@@ -24,31 +28,50 @@ type Department = {
   coLeads: Member[];
 };
 
+const captain: Member = { name: "G. Gopi Durga Mahesh" };
+const viceCaptain: Member = { name: "S. Dhruvin Sai" };
 const coordinator: Member & { dept: string } = {
-  name: "John Doe",
-  dept: "Dept. of Computer Science & Engineering",
+  name: "Dr. Y.V Nandini",
+  dept: "Assistant Professor CSE",
 };
 
 const departments: Department[] = [
   {
     title: "Technical & Cloud",
-    lead: { name: "John Doe" },
-    coLeads: [{ name: "John Doe" }, { name: "John Doe" }, { name: "John Doe" }],
-  },
-  {
-    title: "Web Designing",
-    lead: { name: "John Doe" },
-    coLeads: [{ name: "John Doe" }, { name: "John Doe" }, { name: "John Doe" }],
+    lead: { name: "B. Naga Pujith Prasad" },
+    coLeads: [
+      { name: "N. Hasini Singh" },
+      { name: "T. Keerthana Sai" },
+      { name: "Y. Vedavathi" },
+    ],
   },
   {
     title: "Marketing",
-    lead: { name: "John Doe" },
-    coLeads: [{ name: "John Doe" }, { name: "John Doe" }, { name: "John Doe" }],
+    lead: { name: "M. Joshitha Pragnya" },
+    coLeads: [
+      { name: "K. Sai Sreeja" },
+      { name: "P. Ananya" },
+      { name: "D. Dharani" },
+    ],
+  },
+  {
+    title: "Web Designing",
+    lead: { name: "K. Shritej" },
+    coLeads: [
+      { name: "C. Lakshmi Chaitanya" },
+      { name: "A. Kiranmayi" },
+      { name: "C. Srivalli Lakshmi Krishna Satwika" },
+    ],
   },
   {
     title: "Content Creation",
-    lead: { name: "John Doe" },
-    coLeads: [{ name: "John Doe" }, { name: "John Doe" }, { name: "John Doe" }],
+    lead: { name: "P. Hitesh" },
+    coLeads: [
+      { name: "M. Hema Varshini" },
+      { name: "Ch. Deeshma Durga" },
+      { name: "Ayman Saleem" },
+      { name: "N. Hasini" },
+    ],
   },
 ];
 
@@ -69,7 +92,12 @@ function SectionHeading({ title }: { title: string }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "2rem" }}
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "0.75rem",
+        marginBottom: "2rem",
+      }}
     >
       <span
         style={{
@@ -166,7 +194,11 @@ function MemberCard({
         </span>
         <h3
           className="font-display uppercase"
-          style={{ fontSize: "1.3rem", letterSpacing: "0.02em", lineHeight: 1.05 }}
+          style={{
+            fontSize: "1.3rem",
+            letterSpacing: "0.02em",
+            lineHeight: 1.05,
+          }}
         >
           {member.name}
         </h3>
@@ -192,7 +224,11 @@ export default function TeamPage() {
           width: "100%",
         }}
       >
-        <motion.div initial="hidden" animate="visible" variants={containerStagger}>
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={containerStagger}
+        >
           <motion.div variants={fadeUp}>
             <span
               className="font-display uppercase"
@@ -238,9 +274,40 @@ export default function TeamPage() {
               color: "rgba(255,255,255,0.65)",
             }}
           >
-            Four departments, one shared obsession — shipping real cloud. Led by a faculty
-            coordinator and run by student leads and co-leads across the club.
+            Four departments, one shared obsession — shipping real cloud. Led by
+            a faculty coordinator and run by student leads and co-leads across
+            the club.
           </motion.p>
+        </motion.div>
+      </section>
+
+      <section
+        style={{
+          paddingLeft: "30px",
+          paddingRight: "30px",
+          paddingBottom: "4rem",
+          maxWidth: "1060px",
+          marginLeft: "auto",
+          marginRight: "auto",
+          width: "100%",
+        }}
+      >
+        <SectionHeading title="Leadership" />
+
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-60px" }}
+          variants={containerStagger}
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+            gap: "1.25rem",
+            maxWidth: "860px",
+          }}
+        >
+          <MemberCard member={captain} role="Captain" variant="coordinator" />
+          <MemberCard member={viceCaptain} role="Vice Captain" variant="lead" />
         </motion.div>
       </section>
 
@@ -312,7 +379,12 @@ export default function TeamPage() {
           >
             <MemberCard member={dept.lead} role="Lead" variant="lead" />
             {dept.coLeads.map((member, i) => (
-              <MemberCard key={`${dept.title}-${i}`} member={member} role="Co-Lead" variant="colead" />
+              <MemberCard
+                key={`${dept.title}-${i}`}
+                member={member}
+                role="Co-Lead"
+                variant="colead"
+              />
             ))}
           </motion.div>
         </section>
