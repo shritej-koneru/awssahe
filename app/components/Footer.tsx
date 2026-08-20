@@ -33,7 +33,7 @@ export default function Footer() {
           marginLeft: "auto",
           marginRight: "auto",
           backgroundColor: "#000000",
-          borderTop: "2px solid #ff9900",
+          borderTop: "2px solid #a855f7",
         }}
       >
         <motion.div
@@ -53,7 +53,7 @@ export default function Footer() {
             href="/"
             className="font-display text-[1rem] uppercase tracking-[0.06em]"
           >
-            <span className="text-[#ff9900]">AWS</span>{" "}
+            <span className="text-[#a855f7]">AWS</span>{" "}
             <span className="text-white">Student Builders Group</span>
           </Link>
 
@@ -62,7 +62,7 @@ export default function Footer() {
               <li key={link.label}>
                 <Link
                   href={link.href}
-                  className="font-body text-[0.8rem] uppercase tracking-[0.2em] text-white/50 transition-colors duration-300 hover:text-[#ff9900]"
+                  className="font-body text-[0.8rem] uppercase tracking-[0.2em] text-white/50 transition-colors duration-300 hover:text-[#a855f7]"
                 >
                   {link.label}
                 </Link>
@@ -77,7 +77,7 @@ export default function Footer() {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group inline-flex items-center gap-2 font-display uppercase text-[#ff9900] transition-colors duration-300 hover:text-white"
+                  className="group inline-flex items-center gap-2 font-display uppercase text-[#a855f7] transition-colors duration-300 hover:text-white"
                   style={{ fontSize: "0.9rem", letterSpacing: "0.15em" }}
                 >
                   <svg

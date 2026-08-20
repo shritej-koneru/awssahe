@@ -74,7 +74,7 @@ export default function AboutSection() {
               className="font-display uppercase"
               style={{
                 display: "inline-block",
-                backgroundColor: "#ff9900",
+                backgroundColor: "#a855f7",
                 color: "#000000",
                 border: "3px solid #ffffff",
                 boxShadow: "6px 6px 0 0 #ffffff",
@@ -101,7 +101,7 @@ export default function AboutSection() {
             variants={fadeIn}
           >
             A student-led cloud computing community at Siddhartha Academy of Higher Education,{" "}
-            <span style={{ color: "#ff9900", textShadow: "4px 4px 0 rgba(255,255,255,0.35)" }}>
+            <span style={{ color: "#a855f7", textShadow: "4px 4px 0 rgba(255,255,255,0.35)" }}>
               Vijayawada.
             </span>
           </motion.h2>
@@ -138,7 +138,7 @@ export default function AboutSection() {
                 backgroundColor: "#f5f5f5",
                 color: "#000000",
                 border: "3px solid #000000",
-                boxShadow: "10px 10px 0 0 #ff9900",
+                boxShadow: "10px 10px 0 0 #a855f7",
                 padding: "2rem",
               }}
             >
@@ -155,7 +155,7 @@ export default function AboutSection() {
               <div
                 style={{
                   height: "6px",
-                  backgroundColor: "#ff9900",
+                  backgroundColor: "#a855f7",
                   border: "2px solid #000000",
                   marginBottom: "1.5rem",
                 }}
@@ -180,7 +180,7 @@ export default function AboutSection() {
               whileHover={{ rotate: 0, y: -10 }}
               transition={{ type: "spring", stiffness: 260, damping: 18 }}
               style={{
-                backgroundColor: "#ff9900",
+                backgroundColor: "#a855f7",
                 color: "#000000",
                 border: "3px solid #000000",
                 boxShadow: "10px 10px 0 0 #ffffff",
@@ -225,7 +225,7 @@ export default function AboutSection() {
                       transform: "rotate(45deg)",
                     }}
                   />
-                  <span className="font-body" style={{ fontSize: "1rem", lineHeight: 1.6 }}>
+                  <span className="font-body" style={{ fontSize: "1rem", lineHeight: 1.6, fontWeight: 600 }}>
                     {r}
                   </span>
                 </div>
@@ -247,11 +247,11 @@ export default function AboutSection() {
               style={{
                 width: "16px",
                 height: "16px",
-                backgroundColor: "#ff9900",
+                backgroundColor: "#a855f7",
                 transform: "rotate(45deg)",
               }}
             />
-            <div style={{ height: "8px", backgroundColor: "#ffffff", boxShadow: "5px 5px 0 0 rgba(255,153,0,0.6)" }} />
+            <div style={{ height: "8px", backgroundColor: "#ffffff", boxShadow: "5px 5px 0 0 rgba(168,85,247,0.6)" }} />
             <span
               style={{
                 width: "16px",
@@ -292,7 +292,7 @@ export default function AboutSection() {
                     backgroundColor: "#f5f5f5",
                     color: "#000000",
                     border: "3px solid #000000",
-                    boxShadow: `10px 10px 0 0 ${i % 2 === 0 ? "#ff9900" : "#ffffff"}`,
+                    boxShadow: `10px 10px 0 0 ${i % 2 === 0 ? "#a855f7" : "#ffffff"}`,
                     padding: "1.75rem",
                   }}
                 >
@@ -307,7 +307,7 @@ export default function AboutSection() {
                       border: "3px solid #000000",
                       backgroundColor: "#ffffff",
                       color: "#000000",
-                      boxShadow: "4px 4px 0 0 #ff9900",
+                      boxShadow: "4px 4px 0 0 #a855f7",
                     }}
                   >
                     <Icon />
@@ -325,7 +325,7 @@ export default function AboutSection() {
                   <div
                     style={{
                       height: "5px",
-                      backgroundColor: "#ff9900",
+                      backgroundColor: "#a855f7",
                       border: "2px solid #000000",
                       marginBottom: "0.85rem",
                     }}

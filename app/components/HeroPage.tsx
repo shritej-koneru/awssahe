@@ -9,7 +9,6 @@ import {
   useScroll,
 } from "framer-motion";
 import Navbar from "./Navbar";
-import BackgroundGraphics from "./BackgroundGraphics";
 import AboutSection from "./AboutSection";
 import Footer from "./Footer";
 import {
@@ -51,13 +50,13 @@ function SlideButton({
     <motion.button
       style={style}
       onClick={onClick}
-      className={`relative inline-flex cursor-pointer items-center justify-center overflow-hidden font-display text-lg uppercase leading-none outline-none focus-visible:ring-2 focus-visible:ring-[#ff9900] focus-visible:ring-offset-2 focus-visible:ring-offset-black ${className}`}
+      className={`relative inline-flex cursor-pointer items-center justify-center overflow-hidden font-display text-lg uppercase leading-none outline-none focus-visible:ring-2 focus-visible:ring-[#a855f7] focus-visible:ring-offset-2 focus-visible:ring-offset-black ${className}`}
       variants={ctaButton}
       initial="hidden"
       animate="visible"
       onHoverStart={() => setHovered(true)}
       onHoverEnd={() => setHovered(false)}
-      whileHover={{ y: -4, boxShadow: "0 0 20px rgba(255,153,0,0.35)" }}
+      whileHover={{ y: -4, boxShadow: "0 0 24px rgba(168,85,247,0.4)" }}
       whileTap={{ scale: 0.96 }}
       transition={{ type: "spring", stiffness: 200, damping: 15 }}
     >
@@ -130,37 +129,23 @@ export default function HeroPage() {
       <Navbar />
       <section
         ref={sectionRef}
-        className="relative min-h-screen bg-black text-white overflow-hidden"
+        className="relative min-h-screen bg-transparent text-white overflow-hidden"
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
       >
-        <div className="absolute inset-0 bg-[url('/bg-hero.png')] bg-cover bg-center bg-no-repeat" />
+        <div className="absolute inset-0 bg-[url('/bg-hero.png')] bg-cover bg-center bg-no-repeat opacity-25" />
 
         <motion.div
           className="pointer-events-none absolute inset-0"
           style={{
             background:
-              "radial-gradient(circle at 20% 20%, rgba(255,153,0,0.10), transparent 45%)",
+              "radial-gradient(circle at 20% 20%, rgba(168,85,247,0.18), transparent 45%), radial-gradient(circle at 80% 80%, rgba(168,85,247,0.10), transparent 50%)",
           }}
           animate={{ opacity: [0.6, 1, 0.6] }}
           transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
         />
-        <motion.div
-          className="pointer-events-none absolute h-[50vh] w-[50vh] rounded-full"
-          style={{
-            top: "10%",
-            left: "50%",
-            transform: "translateX(-50%)",
-            filter: "blur(100px)",
-            background: "radial-gradient(circle, rgba(255,153,0,0.14), transparent 70%)",
-          }}
-          animate={{ x: [0, 80, -60, 0], y: [0, -40, 50, 0] }}
-          transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
-        />
 
         <div className="relative z-10">
-          <BackgroundGraphics />
-
           <div
             className="hero-top-pad flex min-h-screen max-w-[1536px] flex-col items-center justify-center"
             style={{
@@ -171,7 +156,7 @@ export default function HeroPage() {
             }}
           >
             <div
-              className="hero-inner-top-pad max-w-[900px] text-center flex flex-col gap-4 md:gap-0"
+              className="hero-inner-top-pad max-w-[950px] text-center flex flex-col items-center gap-4 md:gap-0"
             >
               <motion.div
                 className="relative inline-block"
@@ -201,7 +186,7 @@ export default function HeroPage() {
 
                     <motion.button
                       style={{ marginBottom: "clamp(8px, 3vw, 20px)", x: xIconSmoothX, y: xIconSmoothY }}
-                      className="flex h-10 w-10 items-center justify-center border border-[#ff9900] text-[#ff9900] outline-none focus-visible:ring-2 focus-visible:ring-[#ff9900] focus-visible:ring-offset-2 focus-visible:ring-offset-black sm:h-14 sm:w-14"
+                      className="flex h-10 w-10 items-center justify-center border border-[#a855f7] text-[#a855f7] outline-none focus-visible:ring-2 focus-visible:ring-[#a855f7] focus-visible:ring-offset-2 focus-visible:ring-offset-black sm:h-14 sm:w-14"
                       variants={xButton}
                       initial="hidden"
                       animate="visible"
@@ -209,7 +194,7 @@ export default function HeroPage() {
                         rotate: 90,
                         scale: 1.1,
                         borderWidth: 2,
-                        boxShadow: "0 0 20px rgba(255,153,0,0.4)",
+                        boxShadow: "0 0 20px rgba(168,85,247,0.4)",
                       }}
                       whileTap={{ scale: 0.9 }}
                       transition={{ type: "spring", stiffness: 300, damping: 15 }}
@@ -252,7 +237,7 @@ export default function HeroPage() {
                       <div key={i} className="overflow-hidden" style={i > 0 ? { marginLeft: "-0.04em" } : undefined}>
                         <motion.span
                           style={{ marginTop: "clamp(-12px, -3vw, -20px)" }}
-                          className="inline-block font-display text-[clamp(3.25rem,25vw,10.5rem)] font-black uppercase leading-none tracking-[-0.04em] text-[#ff9900]"
+                          className="inline-block font-display text-[clamp(3.25rem,25vw,10.5rem)] font-black uppercase leading-none tracking-[-0.04em] text-[#a855f7]"
                           variants={letterUpBeyond}
                         >
                           {letter}
@@ -293,8 +278,8 @@ export default function HeroPage() {
                   arrow="→"
                   fill="#000000"
                   idleText="#000000"
-                  hoverText="#ff9900"
-                  className="rounded-lg bg-[#ff9900]"
+                  hoverText="#a855f7"
+                  className="rounded-lg bg-[#a855f7]"
                   style={{ padding: "14px clamp(20px, 5vw, 44px)" }}
                   onClick={() => {
                     window.location.href = "/events";
@@ -304,10 +289,10 @@ export default function HeroPage() {
                 <SlideButton
                   label="Join Us"
                   arrow="→"
-                  fill="#ff9900"
-                  idleText="#ff9900"
+                  fill="#a855f7"
+                  idleText="#a855f7"
                   hoverText="#000000"
-                  className="border border-[#ff9900]"
+                  className="border border-[#a855f7]"
                   style={{ padding: "14px clamp(20px, 5vw, 44px)" }}
                   onClick={() => {
                     window.location.href = "/join";

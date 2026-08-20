@@ -1,0 +1,12 @@
+- generic [active] [ref=f7e1]:
+  - main [ref=f7e3]:
+    - generic [ref=f7e5]:
+      - generic [ref=f7e6]:
+        - img "SAHE College" [ref=f7e8]
+        - generic [ref=f7e9]:
+          - generic [ref=f7e10]: S
+          - generic [ref=f7e11]: A
+          - generic [ref=f7e12]: H
+          - generic [ref=f7e13]: E
+      - img "AWS" [ref=f7e15]
+  - button "Open Next.js Dev Tools" [ref=f7e21] [cursor=pointer]

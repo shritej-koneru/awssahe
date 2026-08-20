@@ -24,7 +24,7 @@ function SectionHeading({ title }: { title: string }) {
         style={{
           width: "12px",
           height: "12px",
-          backgroundColor: "#ff9900",
+          backgroundColor: "#a855f7",
           transform: "rotate(45deg)",
           flexShrink: 0,
         }}
@@ -44,7 +44,7 @@ export default function EventsPage() {
   const previous = getCompletedEvents();
 
   return (
-    <main className="relative min-h-screen overflow-hidden bg-black text-white">
+    <main className="relative min-h-screen overflow-hidden bg-transparent text-white">
       <Navbar />
 
       <section
@@ -66,7 +66,7 @@ export default function EventsPage() {
               className="font-display uppercase"
               style={{
                 display: "inline-block",
-                backgroundColor: "#ff9900",
+                backgroundColor: "#a855f7",
                 color: "#000000",
                 border: "3px solid #ffffff",
                 boxShadow: "6px 6px 0 0 #ffffff",

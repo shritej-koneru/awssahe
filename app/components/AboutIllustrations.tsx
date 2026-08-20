@@ -1,80 +1,92 @@
+"use client";
+
 export function WorkshopIllustration() {
   return (
-    <svg width="64" height="64" viewBox="0 0 96 96" fill="none" aria-hidden="true">
+    <svg
+      width="44"
+      height="44"
+      viewBox="0 0 96 96"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <rect x="12" y="20" width="72" height="52" rx="4" stroke="#000000" strokeWidth="3" fill="#ffffff" />
+      <rect x="12" y="20" width="72" height="14" stroke="#000000" strokeWidth="3" fill="#a855f7" />
+      <circle cx="22" cy="27" r="2.5" fill="#000000" />
+      <circle cx="30" cy="27" r="2.5" fill="#000000" />
+      <circle cx="38" cy="27" r="2.5" fill="#000000" />
+      <rect x="24" y="44" width="48" height="18" rx="2" stroke="#a855f7" strokeWidth="2" />
+      <circle cx="30" cy="49" r="1.5" fill="#a855f7" />
+      <circle cx="34" cy="49" r="1.5" fill="#a855f7" />
       <path
-        d="M16 26h64a5 5 0 0 1 5 5v35H11V31a5 5 0 0 1 5-5z"
-        stroke="currentColor"
-        strokeWidth="3"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M11 66h74l-5 12H16l-5-12z"
-        stroke="currentColor"
-        strokeWidth="3"
-        strokeLinejoin="round"
-      />
-      <rect x="24" y="36" width="48" height="18" rx="2" stroke="#ff9900" strokeWidth="2" />
-      <circle cx="30" cy="41" r="1.5" fill="#ff9900" />
-      <circle cx="34" cy="41" r="1.5" fill="#ff9900" />
-      <path
-        d="M32 45l4 4-4 4"
-        stroke="#ff9900"
+        d="M39 53L43 49L39 45"
+        stroke="#a855f7"
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-      <path d="M41 53h15" stroke="#ff9900" strokeWidth="2" strokeLinecap="round" />
-      <path d="M41 45h9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" opacity="0.5" />
+      <path d="M47 53h15" stroke="#a855f7" strokeWidth="2" strokeLinecap="round" />
+      <path d="M40 72v8M56 72v8M32 80h32" stroke="#000000" strokeWidth="3" strokeLinecap="round" />
     </svg>
   );
 }
 
 export function ProjectIllustration() {
   return (
-    <svg width="64" height="64" viewBox="0 0 96 96" fill="none" aria-hidden="true">
+    <svg
+      width="44"
+      height="44"
+      viewBox="0 0 96 96"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
       <path
-        d="M48 8c13 0 22 9 22 22 0 16-8 28-22 33-14-5-22-17-22-33 0-13 9-22 22-22z"
-        stroke="currentColor"
+        d="M48 16L18 30v36l30 14 30-14V30L48 16z"
+        stroke="#000000"
         strokeWidth="3"
-      />
-      <circle cx="48" cy="30" r="8" stroke="#ff9900" strokeWidth="3" />
-      <path
-        d="M48 26l1.6 3 3.4.5-2.5 2.3.6 3.5L48 34l-3.1 1.3.6-3.5-2.5-2.3 3.4-.5L48 26z"
-        fill="rgba(255,153,0,0.2)"
-      />
-      <path
-        d="M30 45c-9 2-12 8-12 14h14M66 45c9 2 12 8 12 14H64"
-        stroke="currentColor"
-        strokeWidth="3"
-        strokeLinecap="round"
-      />
-      <path
-        d="M40 58l8 20 8-20"
-        fill="rgba(255,153,0,0.2)"
-        stroke="#ff9900"
-        strokeWidth="2"
         strokeLinejoin="round"
+        fill="#ffffff"
       />
+      <path d="M18 30l30 14 30-14" stroke="#000000" strokeWidth="3" />
+      <path d="M48 44v36" stroke="#000000" strokeWidth="3" />
+      <circle cx="48" cy="30" r="8" stroke="#a855f7" strokeWidth="3" />
+      <path d="M48 26v8M44 30h8" stroke="#a855f7" strokeWidth="2" strokeLinecap="round" />
     </svg>
   );
 }
 
 export function CertificationIllustration() {
   return (
-    <svg width="64" height="64" viewBox="0 0 96 96" fill="none" aria-hidden="true">
-      <circle cx="48" cy="42" r="22" stroke="currentColor" strokeWidth="3" />
-      <circle cx="48" cy="42" r="15" stroke="#ff9900" strokeWidth="2" strokeDasharray="3 3" />
+    <svg
+      width="44"
+      height="44"
+      viewBox="0 0 96 96"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
       <path
-        d="M48 30l4.2 8.6 9.3 1.3-6.8 6.6 1.6 9.4L48 51l-8.3 4.9 1.6-9.4-6.8-6.6 9.3-1.3L48 30z"
-        fill="rgba(255,153,0,0.18)"
-        stroke="#ff9900"
-        strokeWidth="2"
+        d="M48 14L74 26V50C74 66.5 63 76 48 82C33 76 22 66.5 22 50V26L48 14z"
+        stroke="#000000"
+        strokeWidth="3"
         strokeLinejoin="round"
+        fill="#ffffff"
       />
       <path
-        d="M36 66l-8 22 8-4 6 8 6-8 8 4-8-22"
-        stroke="currentColor"
+        d="M36 46L44 54L60 38"
+        stroke="#a855f7"
         strokeWidth="3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <circle cx="48" cy="48" r="20" stroke="#000000" strokeWidth="2" strokeDasharray="4 3" />
+      <circle cx="48" cy="48" r="15" stroke="#a855f7" strokeWidth="2" strokeDasharray="3 3" />
+      <path
+        d="M40 70L48 64L56 70"
+        stroke="#a855f7"
+        strokeWidth="3"
+        strokeLinecap="round"
         strokeLinejoin="round"
       />
     </svg>

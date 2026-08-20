@@ -40,7 +40,7 @@ function DetailHeading({ children }: { children: React.ReactNode }) {
         style={{
           width: "12px",
           height: "12px",
-          backgroundColor: "#ff9900",
+          backgroundColor: "#a855f7",
           transform: "rotate(45deg)",
           flexShrink: 0,
         }}
@@ -64,7 +64,7 @@ export default function EventDetail({ event }: { event: ClubEvent }) {
   ];
 
   return (
-    <main className="relative min-h-screen overflow-hidden bg-black text-white">
+    <main className="relative min-h-screen overflow-hidden bg-transparent text-white">
       <Navbar />
 
       <section
@@ -85,7 +85,7 @@ export default function EventDetail({ event }: { event: ClubEvent }) {
               <Link
                 href="/events"
                 className="group inline-flex items-center gap-2 font-display uppercase"
-                style={{ fontSize: "0.85rem", letterSpacing: "0.18em", color: "#ff9900" }}
+                style={{ fontSize: "0.85rem", letterSpacing: "0.18em", color: "#a855f7" }}
               >
                 <span className="inline-block transition-transform duration-300 group-hover:-translate-x-1.5">
                   ←
@@ -101,8 +101,8 @@ export default function EventDetail({ event }: { event: ClubEvent }) {
               <span
                 className="font-display uppercase"
                 style={{
-                  border: "1.5px solid #ff9900",
-                  color: "#ff9900",
+                  border: "1.5px solid #a855f7",
+                  color: "#a855f7",
                   padding: "0.25rem 0.8rem",
                   fontSize: "0.72rem",
                   letterSpacing: "0.2em",
@@ -113,12 +113,13 @@ export default function EventDetail({ event }: { event: ClubEvent }) {
               <span
                 className="font-display uppercase"
                 style={{
-                  backgroundColor: isUpcoming ? "#ff9900" : "transparent",
+                  backgroundColor: isUpcoming ? "#a855f7" : "transparent",
                   color: isUpcoming ? "#000000" : "rgba(255,255,255,0.6)",
-                  border: "1.5px solid #ff9900",
+                  border: "1.5px solid #a855f7",
                   padding: "0.25rem 0.8rem",
                   fontSize: "0.72rem",
                   letterSpacing: "0.2em",
+                  fontWeight: isUpcoming ? 700 : 400,
                 }}
               >
                 {statusLabel[event.status]}
@@ -157,8 +158,8 @@ export default function EventDetail({ event }: { event: ClubEvent }) {
               variants={fadeUp}
               style={{
                 marginTop: "2.5rem",
-                borderTop: "1px solid rgba(255,153,0,0.35)",
-                borderBottom: "1px solid rgba(255,153,0,0.35)",
+                borderTop: "1px solid rgba(168,85,247,0.35)",
+                borderBottom: "1px solid rgba(168,85,247,0.35)",
                 padding: "1.5rem 0",
               }}
             >
@@ -173,7 +174,7 @@ export default function EventDetail({ event }: { event: ClubEvent }) {
                   <div key={item.label}>
                     <div
                       className="font-display uppercase"
-                      style={{ fontSize: "0.68rem", letterSpacing: "0.2em", color: "#ff9900", marginBottom: "0.4rem" }}
+                      style={{ fontSize: "0.68rem", letterSpacing: "0.2em", color: "#a855f7", marginBottom: "0.4rem" }}
                     >
                       {item.label}
                     </div>
@@ -227,8 +228,8 @@ export default function EventDetail({ event }: { event: ClubEvent }) {
                 alignItems: "center",
                 justifyContent: "space-between",
                 gap: "1.5rem",
-                border: "2px solid #ff9900",
-                backgroundColor: "rgba(255,153,0,0.05)",
+                border: "2px solid #a855f7",
+                backgroundColor: "rgba(168,85,247,0.08)",
                 padding: "1.75rem",
               }}
             >
@@ -243,7 +244,7 @@ export default function EventDetail({ event }: { event: ClubEvent }) {
                   First come, first served — register now.
                 </div>
               </div>
-              <RegisterButton eventTitle={event.title} compact />
+              <RegisterButton />
             </motion.div>
           )}
 
@@ -256,7 +257,7 @@ export default function EventDetail({ event }: { event: ClubEvent }) {
           >
             <DetailHeading>Agenda</DetailHeading>
 
-            <div style={{ position: "relative", borderLeft: "1px solid rgba(255,153,0,0.5)", paddingLeft: "1.75rem", marginLeft: "0.25rem" }}>
+            <div style={{ position: "relative", borderLeft: "1px solid rgba(168,85,247,0.5)", paddingLeft: "1.75rem", marginLeft: "0.25rem" }}>
               {event.agenda.map((item, i) => (
                 <motion.div
                   key={`${item.time}-${i}`}
@@ -271,7 +272,7 @@ export default function EventDetail({ event }: { event: ClubEvent }) {
                       top: "7px",
                       width: "11px",
                       height: "11px",
-                      backgroundColor: "#ff9900",
+                      backgroundColor: "#a855f7",
                       transform: "rotate(45deg)",
                     }}
                   />
@@ -279,8 +280,8 @@ export default function EventDetail({ event }: { event: ClubEvent }) {
                     className="font-display uppercase"
                     style={{
                       display: "inline-block",
-                      border: "1px solid #ff9900",
-                      color: "#ff9900",
+                      border: "1px solid #a855f7",
+                      color: "#a855f7",
                       padding: "0.15rem 0.6rem",
                       fontSize: "0.72rem",
                       letterSpacing: "0.15em",
@@ -325,7 +326,7 @@ export default function EventDetail({ event }: { event: ClubEvent }) {
               <motion.h3
                 variants={fadeUp}
                 className="font-display uppercase"
-                style={{ fontSize: "1.15rem", letterSpacing: "0.05em", marginBottom: "1.25rem", color: "#ff9900" }}
+                style={{ fontSize: "1.15rem", letterSpacing: "0.05em", marginBottom: "1.25rem", color: "#a855f7" }}
               >
                 Eligibility
               </motion.h3>
@@ -347,7 +348,7 @@ export default function EventDetail({ event }: { event: ClubEvent }) {
                       marginTop: "0.3em",
                       width: "11px",
                       height: "11px",
-                      backgroundColor: "#ff9900",
+                      backgroundColor: "#a855f7",
                       flexShrink: 0,
                       transform: "rotate(45deg)",
                     }}
@@ -365,15 +366,15 @@ export default function EventDetail({ event }: { event: ClubEvent }) {
               viewport={{ once: true, margin: "-60px" }}
               variants={containerStagger}
               style={{
-                border: "1px solid rgba(255,153,0,0.4)",
-                backgroundColor: "rgba(255,153,0,0.05)",
+                border: "1px solid rgba(168,85,247,0.4)",
+                backgroundColor: "rgba(168,85,247,0.05)",
                 padding: "1.75rem",
               }}
             >
               <motion.h3
                 variants={fadeUp}
                 className="font-display uppercase"
-                style={{ fontSize: "1.15rem", letterSpacing: "0.05em", marginBottom: "1.25rem", color: "#ff9900" }}
+                style={{ fontSize: "1.15rem", letterSpacing: "0.05em", marginBottom: "1.25rem", color: "#a855f7" }}
               >
                 What you&apos;ll take away
               </motion.h3>
@@ -388,7 +389,7 @@ export default function EventDetail({ event }: { event: ClubEvent }) {
                       marginTop: "0.3em",
                       width: "11px",
                       height: "11px",
-                      backgroundColor: "#ff9900",
+                      backgroundColor: "#a855f7",
                       flexShrink: 0,
                       transform: "rotate(45deg)",
                     }}
@@ -415,8 +416,8 @@ export default function EventDetail({ event }: { event: ClubEvent }) {
                   key={skill}
                   className="font-body"
                   style={{
-                    border: "1px solid rgba(255,153,0,0.5)",
-                    color: "#ff9900",
+                    border: "1px solid rgba(168,85,247,0.5)",
+                    color: "#a855f7",
                     padding: "0.3rem 0.8rem",
                     fontSize: "0.8rem",
                     letterSpacing: "0.06em",
@@ -436,7 +437,7 @@ export default function EventDetail({ event }: { event: ClubEvent }) {
               transition={{ duration: 0.6, ease: "easeOut" }}
               style={{ marginTop: "4.5rem", textAlign: "center" }}
             >
-              <RegisterButton eventTitle={event.title} />
+              <RegisterButton />
               <p
                 className="font-body"
                 style={{ marginTop: "1rem", fontSize: "0.8rem", letterSpacing: "0.15em", color: "rgba(255,255,255,0.45)" }}

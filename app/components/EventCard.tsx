@@ -19,7 +19,7 @@ export default function EventCard({
   const rotate = index % 2 === 0 ? -0.8 : 1;
 
   const cardStyle = {
-    backgroundColor: event.status === "upcoming" ? "#ff9900" : "#f5f5f5",
+    backgroundColor: event.status === "upcoming" ? "#a855f7" : "#f5f5f5",
     color: "#000000",
     border: "2px solid #ffffff",
     boxShadow: "6px 6px 0 0 #000000",
@@ -30,7 +30,7 @@ export default function EventCard({
   const chipStyle = {
     border: "1.5px solid #000000",
     backgroundColor: onDark ? "#000000" : "#ffffff",
-    color: onDark ? "#ff9900" : "#000000",
+    color: onDark ? "#a855f7" : "#000000",
   };
 
   return (
@@ -105,9 +105,10 @@ export default function EventCard({
             style={{
               fontSize: "0.72rem",
               letterSpacing: "0.1em",
-              color: onDark ? "rgba(0,0,0,0.75)" : "rgba(0,0,0,0.65)",
+              color: onDark ? "rgba(0,0,0,0.85)" : "rgba(0,0,0,0.65)",
               lineHeight: 1.7,
               marginBottom: "0.9rem",
+              fontWeight: onDark ? 600 : 400,
             }}
           >
             <span>{event.date}</span>
@@ -147,6 +148,7 @@ export default function EventCard({
               fontSize: "0.8rem",
               letterSpacing: "0.12em",
               color: "#000000",
+              fontWeight: 700,
             }}
           >
             View details{" "}

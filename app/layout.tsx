@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Bebas_Neue, Space_Grotesk } from "next/font/google";
 import "./globals.css";
+import BackgroundGraphics from "./components/BackgroundGraphics";
 
 const display = Bebas_Neue({
   subsets: ["latin"],
@@ -36,9 +37,10 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
       </head>
-      <body className="min-h-full" suppressHydrationWarning>
+      <body className="min-h-full bg-black text-white relative" suppressHydrationWarning>
         <div className="grain-overlay" aria-hidden="true" />
-        {children}
+        <BackgroundGraphics />
+        <div className="relative z-10">{children}</div>
       </body>
     </html>
   );
