@@ -37,11 +37,18 @@ type Department = {
 /* =========================================================================
    1. FACULTY COORDINATOR & LEADERSHIP
    ========================================================================= */
-const coordinator: Member & { dept: string } = {
-  name: "Dr. Y.V Nandini",
-  dept: "Assistant Professor CSE",
-  image: "/team/Nandini Mam.png",
-};
+const coordinators: (Member & { dept: string })[] = [
+  {
+    name: "Dr. Y.V Nandini",
+    dept: "Assistant Professor CSE",
+    image: "/team/Nandini Mam.png",
+  },
+  {
+    name: "Dr. Praveen Kumar Kollu",
+    dept: "Assistant Professor CSE",
+    image: "",
+  },
+];
 
 const captain: Member = {
   name: "G. Gopi Durga Mahesh",
@@ -413,33 +420,42 @@ export default function TeamPage() {
                 width: "100%",
               }}
             >
-              <SectionHeading title="Faculty Coordinator" />
+              <SectionHeading title="Faculty Coordinators" />
 
               <motion.div
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: "-60px" }}
                 variants={containerStagger}
-                style={{ maxWidth: "360px" }}
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+                  gap: "1.5rem",
+                  maxWidth: "720px",
+                }}
               >
-                <MemberCard
-                  member={coordinator}
-                  role="Faculty Coordinator"
-                  index={0}
-                />
-                <motion.p
-                  variants={fadeUp}
-                  className="font-body"
-                  style={{
-                    marginTop: "1.25rem",
-                    fontSize: "0.85rem",
-                    letterSpacing: "0.15em",
-                    color: "#a855f7",
-                    fontWeight: 600,
-                  }}
-                >
-                  {coordinator.dept}
-                </motion.p>
+                {coordinators.map((coord, i) => (
+                  <div key={coord.name}>
+                    <MemberCard
+                      member={coord}
+                      role="Faculty Coordinator"
+                      index={i}
+                    />
+                    <motion.p
+                      variants={fadeUp}
+                      className="font-body"
+                      style={{
+                        marginTop: "1.25rem",
+                        fontSize: "0.85rem",
+                        letterSpacing: "0.15em",
+                        color: "#a855f7",
+                        fontWeight: 600,
+                      }}
+                    >
+                      {coord.dept}
+                    </motion.p>
+                  </div>
+                ))}
               </motion.div>
             </section>
           )}

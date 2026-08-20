@@ -6,6 +6,7 @@ import type { ClubEvent } from "../lib/events";
 
 const statusLabel: Record<ClubEvent["status"], string> = {
   upcoming: "UPCOMING",
+  ongoing: "ONGOING",
   completed: "COMPLETED",
 };
 
@@ -19,13 +20,13 @@ export default function EventCard({
   const rotate = index % 2 === 0 ? -0.8 : 1;
 
   const cardStyle = {
-    backgroundColor: event.status === "upcoming" ? "#a855f7" : "#f5f5f5",
+    backgroundColor: (event.status === "upcoming" || event.status === "ongoing") ? "#a855f7" : "#f5f5f5",
     color: "#000000",
     border: "2px solid #ffffff",
     boxShadow: "6px 6px 0 0 #000000",
   };
 
-  const onDark = event.status === "upcoming";
+  const onDark = event.status === "upcoming" || event.status === "ongoing";
 
   const chipStyle = {
     border: "1.5px solid #000000",

@@ -1,4 +1,4 @@
-export type EventStatus = "upcoming" | "completed";
+export type EventStatus = "upcoming" | "ongoing" | "completed";
 
 export interface AgendaItem {
   time: string;
@@ -42,7 +42,7 @@ export const events: ClubEvent[] = [
     title: "AWS CloudX Workshop",
     tagline:
       "A multi-day hands-on workshop on AWS Cloud for III B.Tech students, covering cloud fundamentals, Lambda, S3, and more.",
-    status: "upcoming",
+    status: "ongoing",
     category: "Workshop",
     date: "August 20 – 29, 2026",
     time: "9:00 AM – 4:30 PM",
@@ -125,7 +125,7 @@ export function getEventById(id: string): ClubEvent | undefined {
 }
 
 export function getUpcomingEvents(): ClubEvent[] {
-  return events.filter((event) => event.status === "upcoming");
+  return events.filter((event) => event.status === "upcoming" || event.status === "ongoing");
 }
 
 export function getCompletedEvents(): ClubEvent[] {

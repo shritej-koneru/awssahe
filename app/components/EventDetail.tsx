@@ -19,6 +19,7 @@ const containerStagger = {
 
 const statusLabel: Record<ClubEvent["status"], string> = {
   upcoming: "UPCOMING",
+  ongoing: "ONGOING",
   completed: "COMPLETED",
 };
 
@@ -51,7 +52,7 @@ function DetailHeading({ children }: { children: React.ReactNode }) {
 }
 
 export default function EventDetail({ event }: { event: ClubEvent }) {
-  const isUpcoming = event.status === "upcoming";
+  const isUpcoming = event.status === "upcoming" || event.status === "ongoing";
 
   const meta = [
     { label: "Date", value: event.date },
