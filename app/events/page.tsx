@@ -144,6 +144,12 @@ export default function EventsPage() {
               <EventCard key={event.id} event={event} index={i} />
             ))}
           </div>
+
+          {previous.length === 0 && (
+            <p className="font-body" style={{ fontSize: "1rem", color: "rgba(255,255,255,0.6)" }}>
+              No completed events yet.
+            </p>
+          )}
         </div>
       </section>
 

@@ -6,6 +6,13 @@ export interface AgendaItem {
   desc: string;
 }
 
+export interface EventSession {
+  date: string;
+  time: string;
+  venue: string;
+  classes: string;
+}
+
 export interface ClubEvent {
   id: string;
   title: string;
@@ -26,176 +33,89 @@ export interface ClubEvent {
   prerequisites: string[];
   skills: string[];
   organizer: string;
+  sessions?: EventSession[];
 }
 
 export const events: ClubEvent[] = [
   {
-    id: "aws-cloud-bootcamp",
-    title: "AWS Cloud Bootcamp",
+    id: "aws-cloudx-workshop",
+    title: "AWS CloudX Workshop",
     tagline:
-      "Go from zero to a live serverless application in a single day — build an API, host a site, and ship it to the world.",
+      "A multi-day hands-on workshop on AWS Cloud for III B.Tech students, covering cloud fundamentals, Lambda, S3, and more.",
     status: "upcoming",
     category: "Workshop",
-    date: "Saturday, August 22, 2026",
+    date: "August 20 – 29, 2026",
     time: "9:00 AM – 4:30 PM",
-    venue: "VL Block CSE Seminar Hall - 1",
-    mode: "Hybrid",
+    venue: "CSE Seminar Hall-1 & Central Auditorium",
+    mode: "In-Person",
     eligibility:
-      "Open to every student at SAHE — all years, all branches. No prior AWS or cloud experience needed. Bring your laptop and your curiosity.",
-    registrationDeadline: "August 20, 2026",
-    seats: "120",
+      "Mandatory for III B.Tech students of CSE-A, CSE-B, CSE-C, CSE-D, CSE-E, AI&DS-A, AI&DS-B & AI&ML. As per directions of the HOD Sir.",
+    registrationDeadline: "August 19, 2026",
+    seats: "—",
     fee: "Free",
     description: [
-      "The AWS Cloud Bootcamp is our flagship hands-on workshop of the semester. Over a full day you will design, build, and deploy a real serverless application on AWS — not in a slide deck, but in your own browser terminal.",
-      "By the end of the day you will have a working REST API powered by Lambda and DynamoDB, a static website served from S3 through CloudFront, and the confidence to keep building on your own. Mentors from the club will be on the floor all day to unblock you.",
+      "As per the directions of the HOD Sir, the AWS CloudX workshop is being conducted for the III B.Tech students. This multi-day workshop covers hands-on sessions on AWS cloud services including compute, storage, databases, and serverless architectures.",
+      "All concerned faculty members are requested to suspend regular class work for the respective students during the above sessions.",
+    ],
+    sessions: [
+      {
+        date: "20th – 21st August 2026 (Thursday & Friday)",
+        time: "9:00 AM – 4:30 PM",
+        venue: "CSE Seminar Hall-1",
+        classes: "CSE-A, CSE-B & AI&DS-B",
+      },
+      {
+        date: "22nd August 2026 (Saturday)",
+        time: "9:00 AM – 1:00 PM",
+        venue: "Central Auditorium",
+        classes: "CSE-C, CSE-D, CSE-E, AI&DS-A & AI&ML",
+      },
+      {
+        date: "28th August 2026 (Friday)",
+        time: "9:00 AM – 4:30 PM",
+        venue: "CSE Seminar Hall-1",
+        classes: "CSE-C, CSE-D & CSE-E",
+      },
+      {
+        date: "29th August 2026 (Saturday)",
+        time: "9:00 AM – 4:30 PM",
+        venue: "CSE Seminar Hall-1",
+        classes: "AI&DS-A & AI&ML",
+      },
     ],
     agenda: [
       {
-        time: "9:00 – 9:30",
-        title: "Kickoff & Cloud 101",
-        desc: "Welcome note, what the cloud actually is, and why AWS powers half of the internet.",
+        time: "Day 1",
+        title: "Cloud Fundamentals & AWS Console",
+        desc: "Introduction to cloud computing, AWS console walkthrough, IAM setup, and free-tier overview.",
       },
       {
-        time: "9:30 – 10:30",
-        title: "Setup Sprint",
-        desc: "Create your free AWS account, install the CLI, and configure IAM users the safe way.",
+        time: "Day 2",
+        title: "Compute & Storage",
+        desc: "Hands-on with EC2, S3, and managing instances and buckets from the console.",
       },
       {
-        time: "10:30 – 12:00",
-        title: "Build: Serverless API",
-        desc: "Ship a REST API with Lambda + API Gateway backed by DynamoDB, all from the console.",
+        time: "Day 3",
+        title: "Databases & Networking",
+        desc: "Working with DynamoDB, RDS basics, VPC concepts, and security groups.",
       },
       {
-        time: "12:00 – 1:00",
-        title: "Lunch & Networking",
-        desc: "Lunch with the team — talk cloud, careers, and internships with the mentors.",
-      },
-      {
-        time: "1:00 – 3:00",
-        title: "Deploy: Static Site to S3",
-        desc: "Host a portfolio on S3, front it with CloudFront, and wire up your custom domain.",
-      },
-      {
-        time: "3:00 – 4:30",
-        title: "Show & Tell + Certificates",
-        desc: "Demo what you built, ask mentors anything, and grab your certificate of participation.",
+        time: "Day 4",
+        title: "Serverless & Deployment",
+        desc: "Building with Lambda, API Gateway, and deploying a simple serverless application.",
       },
     ],
     takeaways: [
-      "A deployed serverless API of your own",
-      "A live static website running on AWS",
-      "Working knowledge of IAM, Lambda, S3, and DynamoDB",
-      "The full session recording and slide deck",
-      "Certificate of participation from AWS Student Builders Group",
+      "Hands-on experience with AWS core services",
+      "Working knowledge of EC2, S3, Lambda, and DynamoDB",
+      "Certificate of participation",
+      "Confidence to build on AWS independently",
     ],
     prerequisites: [
-      "A laptop — any operating system works",
-      "An AWS account (we will help you set up a free tier on the spot)",
-      "Enthusiasm to build, break, and rebuild",
+      "III B.Tech students (CSE / AI&DS / AI&ML branches)",
+      "A laptop — mandatory for all participants",
     ],
-    skills: ["AWS Lambda", "API Gateway", "DynamoDB", "S3", "IAM"],
-    organizer: "AWS Student Builders Group, SAHE",
-  },
-  {
-    id: "aws-discovery-session",
-    title: "AWS Discovery Session",
-    tagline:
-      "An introduction to cloud computing and the AWS platform, made for students starting from absolute zero.",
-    status: "completed",
-    category: "Session",
-    date: "Saturday, February 14, 2026",
-    time: "10:00 AM – 1:00 PM",
-    venue: "VL Block CSE Seminar Hall - 1",
-    mode: "In-Person",
-    eligibility:
-      "Open to all students of SAHE. No prior experience required — perfect for first-years discovering the cloud for the first time.",
-    registrationDeadline: "—",
-    seats: "200",
-    fee: "Free",
-    description: [
-      "The Discovery Session was our first big event of the semester — a 3-hour crash course on what the cloud is, why AWS dominates the industry, and how students can use free-tier services to learn without spending a rupee.",
-      "We walked through live demos of EC2, S3, and the billing console, and ended with an open Q&A where first-years could ask mentors anything about getting started.",
-    ],
-    agenda: [
-      {
-        time: "10:00 – 10:30",
-        title: "Welcome & Club Intro",
-        desc: "Meet the core team and hear about the roadmap for the semester.",
-      },
-      {
-        time: "10:30 – 12:00",
-        title: "The Cloud in 90 Minutes",
-        desc: "Live demos of EC2, S3, and free-tier billing explained in plain language.",
-      },
-      {
-        time: "12:00 – 1:00",
-        title: "Q&A with Mentors",
-        desc: "Ask anything — careers, certifications, or where to start your cloud journey.",
-      },
-    ],
-    takeaways: [
-      "A clear mental model of how the cloud works",
-      "A step-by-step free-tier roadmap to learn without spending",
-      "The club's roadmap and how to get involved",
-    ],
-    prerequisites: ["None — this session was designed for complete beginners"],
-    skills: ["Cloud Fundamentals", "EC2", "S3", "Billing"],
-    organizer: "AWS Student Builders Group, SAHE",
-  },
-  {
-    id: "lambda-serverless-workshop",
-    title: "Serverless with AWS Lambda",
-    tagline:
-      "Write your first serverless function, trigger it with real events, and watch it scale automatically.",
-    status: "completed",
-    category: "Workshop",
-    date: "Saturday, April 4, 2026",
-    time: "9:30 AM – 3:30 PM",
-    venue: "VL Block CSE Seminar Hall - 1",
-    mode: "In-Person",
-    eligibility:
-      "Open to all SAHE students. Attendance at the AWS Discovery Session or basic familiarity with the AWS console was recommended.",
-    registrationDeadline: "—",
-    seats: "60",
-    fee: "Free",
-    description: [
-      "In this hands-on workshop members wrote their very first serverless functions. We moved beyond theory: every participant deployed a Lambda function, wired it to real AWS events, and saw how the platform scales from one request to thousands with zero server management.",
-      "The final open-build session turned the workshop into a mini hackathon, with members chaining Lambda to S3 to build tiny file-processing services.",
-    ],
-    agenda: [
-      {
-        time: "9:30 – 10:00",
-        title: "Serverless in 30 Minutes",
-        desc: "A fast recap of what serverless means and why teams love Lambda.",
-      },
-      {
-        time: "10:00 – 11:30",
-        title: "Your First Lambda",
-        desc: "Write, deploy, and invoke a Lambda function from the console and the CLI.",
-      },
-      {
-        time: "11:30 – 1:00",
-        title: "Triggering with S3 Events",
-        desc: "Auto-run functions whenever files land in a bucket.",
-      },
-      {
-        time: "1:00 – 2:00",
-        title: "Lunch",
-        desc: "Break, food, and chats with the team.",
-      },
-      {
-        time: "2:00 – 3:30",
-        title: "Open Build: Mini Projects",
-        desc: "A hands-on build session to turn what you learned into a tiny project.",
-      },
-    ],
-    takeaways: [
-      "A deployed Lambda function of your own",
-      "Hands-on experience with event-driven architecture",
-      "Code samples and notes from the full workshop",
-    ],
-    prerequisites: ["A laptop", "A laptop — prior attendance recommended but not required"],
-    skills: ["AWS Lambda", "CloudWatch", "EventBridge", "S3"],
+    skills: ["AWS EC2", "S3", "Lambda", "DynamoDB", "IAM", "API Gateway"],
     organizer: "AWS Student Builders Group, SAHE",
   },
 ];

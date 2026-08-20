@@ -215,6 +215,56 @@ export default function EventDetail({ event }: { event: ClubEvent }) {
             ))}
           </motion.div>
 
+          {event.sessions && event.sessions.length > 0 && (
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-60px" }}
+              variants={containerStagger}
+              style={{ marginTop: "3.5rem" }}
+            >
+              <DetailHeading>Schedule</DetailHeading>
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+                  gap: "1rem",
+                }}
+              >
+                {event.sessions.map((session, i) => (
+                  <motion.div
+                    key={i}
+                    variants={fadeUp}
+                    style={{
+                      border: "1px solid rgba(168,85,247,0.35)",
+                      backgroundColor: "rgba(168,85,247,0.05)",
+                      padding: "1.25rem",
+                    }}
+                  >
+                    <div
+                      className="font-display uppercase"
+                      style={{ fontSize: "0.68rem", letterSpacing: "0.2em", color: "#a855f7", marginBottom: "0.6rem" }}
+                    >
+                      Session {i + 1}
+                    </div>
+                    <div className="font-display uppercase" style={{ fontSize: "0.95rem", letterSpacing: "0.03em", marginBottom: "0.5rem", lineHeight: 1.3 }}>
+                      {session.date}
+                    </div>
+                    <div className="font-body" style={{ fontSize: "0.85rem", color: "rgba(255,255,255,0.7)", marginBottom: "0.3rem" }}>
+                      <span style={{ color: "#a855f7" }}>Time:</span> {session.time}
+                    </div>
+                    <div className="font-body" style={{ fontSize: "0.85rem", color: "rgba(255,255,255,0.7)", marginBottom: "0.3rem" }}>
+                      <span style={{ color: "#a855f7" }}>Venue:</span> {session.venue}
+                    </div>
+                    <div className="font-body" style={{ fontSize: "0.85rem", color: "rgba(255,255,255,0.7)" }}>
+                      <span style={{ color: "#a855f7" }}>Classes:</span> {session.classes}
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          )}
+
           {isUpcoming && (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -238,10 +288,10 @@ export default function EventDetail({ event }: { event: ClubEvent }) {
                   className="font-display uppercase"
                   style={{ fontSize: "1.35rem", lineHeight: 1.1, letterSpacing: "0.02em" }}
                 >
-                  Seats are limited.
+                  Mandatory attendance.
                 </div>
                 <div className="font-body" style={{ marginTop: "0.4rem", fontSize: "0.85rem", letterSpacing: "0.1em", color: "rgba(255,255,255,0.6)" }}>
-                  First come, first served — register now.
+                  Students who remain absent will be fined. Bring your laptop.
                 </div>
               </div>
               <RegisterButton />
