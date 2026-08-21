@@ -195,7 +195,7 @@ export default function AboutSection() {
                   marginBottom: "1rem",
                 }}
               >
-                Why join
+                Why us
               </h3>
               <div
                 style={{

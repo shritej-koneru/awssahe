@@ -16,7 +16,6 @@ const navItems = [
   { name: "About", href: "/#about" },
   { name: "Events", href: "/events" },
   { name: "Team", href: "/team" },
-  { name: "Join", href: "/join" },
 ];
 
 const meetupUrl =

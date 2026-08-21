@@ -286,18 +286,6 @@ export default function HeroPage() {
                   }}
                 />
 
-                <SlideButton
-                  label="Join Us"
-                  arrow="→"
-                  fill="#a855f7"
-                  idleText="#a855f7"
-                  hoverText="#000000"
-                  className="border border-[#a855f7]"
-                  style={{ padding: "14px clamp(20px, 5vw, 44px)" }}
-                  onClick={() => {
-                    window.location.href = "/join";
-                  }}
-                />
               </motion.div>
             </div>
           </div>

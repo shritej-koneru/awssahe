@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import type { ClubEvent } from "../lib/events";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-import RegisterButton from "./RegisterButton";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -266,38 +265,7 @@ export default function EventDetail({ event }: { event: ClubEvent }) {
             </motion.div>
           )}
 
-          {isUpcoming && (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-              style={{
-                marginTop: "3.5rem",
-                display: "flex",
-                flexWrap: "wrap",
-                alignItems: "center",
-                justifyContent: "space-between",
-                gap: "1.5rem",
-                border: "2px solid #a855f7",
-                backgroundColor: "rgba(168,85,247,0.08)",
-                padding: "1.75rem",
-              }}
-            >
-              <div>
-                <div
-                  className="font-display uppercase"
-                  style={{ fontSize: "1.35rem", lineHeight: 1.1, letterSpacing: "0.02em" }}
-                >
-                  Mandatory attendance.
-                </div>
-                <div className="font-body" style={{ marginTop: "0.4rem", fontSize: "0.85rem", letterSpacing: "0.1em", color: "rgba(255,255,255,0.6)" }}>
-                  Students who remain absent will be fined. Bring your laptop.
-                </div>
-              </div>
-              <RegisterButton />
-            </motion.div>
-          )}
+
 
           <motion.div
             initial="hidden"
@@ -480,23 +448,19 @@ export default function EventDetail({ event }: { event: ClubEvent }) {
             </motion.div>
           </motion.div>
 
-          {isUpcoming && (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-              style={{ marginTop: "4.5rem", textAlign: "center" }}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            style={{ marginTop: "4.5rem", textAlign: "center" }}
+          >
+            <p
+              className="font-body"
+              style={{ fontSize: "0.8rem", letterSpacing: "0.15em", color: "rgba(255,255,255,0.45)" }}
             >
-              <RegisterButton />
-              <p
-                className="font-body"
-                style={{ marginTop: "1rem", fontSize: "0.8rem", letterSpacing: "0.15em", color: "rgba(255,255,255,0.45)" }}
-              >
-                Organized by {event.organizer}
-              </p>
-            </motion.div>
-          )}
+              Organized by {event.organizer}
+            </p>
+          </motion.div>
 
           {!isUpcoming && (
             <motion.p
