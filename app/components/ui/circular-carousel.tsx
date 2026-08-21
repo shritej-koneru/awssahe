@@ -157,11 +157,12 @@ export function CircularCarousel({
                   ease: [0.16, 1, 0.3, 1],
                 }}
                 onClick={() => goTo(i)}
+                onContextMenu={(e) => e.preventDefault()}
                 aria-label={item.title}
                 aria-selected={isActive}
                 role="option"
                 className={cn(
-                  "absolute left-1/2 top-1/2 flex h-72 w-72 -translate-x-1/2 -translate-y-1/2 cursor-pointer flex-col items-start justify-between rounded-3xl border border-purple-500/40 bg-gradient-to-b from-[#160d30]/95 to-[#0b0518]/95 p-5 backdrop-blur-lg transition-all duration-200 overflow-hidden",
+                  "absolute left-1/2 top-1/2 flex h-72 w-72 -translate-x-1/2 -translate-y-1/2 cursor-pointer flex-col items-start justify-between rounded-3xl border border-purple-500/40 bg-gradient-to-b from-[#160d30]/95 to-[#0b0518]/95 p-5 backdrop-blur-lg transition-all duration-200 overflow-hidden select-none",
                   isActive
                     ? "shadow-[0_0_50px_rgba(168,85,247,0.65)] border-[#a855f7] bg-[#1a0f38]"
                     : "shadow-[0_12px_35px_-4px_rgba(0,0,0,0.7)] hover:shadow-[0_16px_45px_-4px_rgba(168,85,247,0.35)]",
@@ -175,7 +176,8 @@ export function CircularCarousel({
                       src={item.image}
                       alt={item.title}
                       fill
-                      className="object-cover"
+                      draggable={false}
+                      className="object-cover pointer-events-none select-none"
                     />
                   ) : (
                     <div className="flex flex-col items-center justify-center gap-1 w-full h-full bg-gradient-to-b from-purple-950/60 to-purple-900/30">

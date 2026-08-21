@@ -222,7 +222,8 @@ function MemberCard({
         boxShadow: "0 10px 30px rgba(0,0,0,0.6)",
         borderRadius: "14px",
       }}
-      className="h-full overflow-hidden transition-all duration-300 relative group flex flex-col justify-between"
+      className="h-full overflow-hidden transition-all duration-300 relative group flex flex-col justify-between select-none"
+      onContextMenu={(e) => e.preventDefault()}
     >
       {/* Top Card Glow Bar */}
       <div className="h-1 w-full bg-gradient-to-r from-purple-600 via-purple-400 to-purple-700" />
@@ -241,12 +242,15 @@ function MemberCard({
           src={avatarSrc}
           alt={member.name}
           fill
+          draggable={false}
           style={{
             display: "block",
             objectFit: "cover",
             objectPosition: imagePos,
             transform: `scale(${imageScale})`,
             transformOrigin: "center center",
+            pointerEvents: "none",
+            userSelect: "none",
           }}
           sizes="260px"
         />
