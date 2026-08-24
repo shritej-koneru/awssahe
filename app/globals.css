@@ -39,6 +39,19 @@ html {
   scroll-padding-top: 6rem;
 }
 
+/* Custom cursor styling for fine pointer (desktop) devices */
+@media (pointer: fine) {
+  body,
+  a,
+  button,
+  input,
+  select,
+  textarea,
+  [role="button"] {
+    cursor: none !important;
+  }
+}
+
 /* Grain / noise texture overlay */
 @keyframes grain {
   0%,

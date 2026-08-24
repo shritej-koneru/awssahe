@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Bebas_Neue, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import BackgroundGraphics from "./components/BackgroundGraphics";
+import CustomCursor from "./components/CustomCursor";
 
 const display = Bebas_Neue({
   subsets: ["latin"],
@@ -38,6 +39,7 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full bg-black text-white relative" suppressHydrationWarning>
+        <CustomCursor />
         <div className="grain-overlay" aria-hidden="true" />
         <BackgroundGraphics />
         <div className="relative z-10">{children}</div>

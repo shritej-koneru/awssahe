@@ -1,0 +1,49 @@
+{
+  "name": "AWS Student Builders Group SAHE Brand Assets Index",
+  "organization": "Siddhartha Academy of Higher Education, Vijayawada",
+  "brandFiles": [
+    {
+      "name": "Brand Guidelines",
+      "path": "/brand/BRAND_GUIDELINES.md",
+      "format": "markdown",
+      "description": "Comprehensive identity handbook, mission, architecture, and tone of voice."
+    },
+    {
+      "name": "Design System Specification",
+      "path": "/brand/DESIGN_SYSTEM.md",
+      "format": "markdown",
+      "description": "UI component standards, color tokens, typography scales, and neo-brutalist motifs."
+    },
+    {
+      "name": "Design Tokens",
+      "path": "/brand/tokens.json",
+      "format": "json",
+      "description": "Machine-readable design tokens for colors, typography, borders, radii, and shadows."
+    },
+    {
+      "name": "Vector Logo (Full)",
+      "path": "/brand/logo.svg",
+      "format": "svg",
+      "description": "Scalable primary brand logo with dark background, brutalist icon, and typography."
+    },
+    {
+      "name": "Vector Logo Badge (Icon)",
+      "path": "/brand/logo-badge.svg",
+      "format": "svg",
+      "description": "Compact square emblem for favicons, social avatars, and app icons."
+    },
+    {
+      "name": "Vector Social Banner",
+      "path": "/brand/banner.svg",
+      "format": "svg",
+      "description": "1200x630 resolution banner image for social cards, OpenGraph, and repository headers."
+    }
+  ],
+  "existingLogos": [
+    { "name": "Club Logo", "path": "/club-logo.jpg" },
+    { "name": "SAHE Logo", "path": "/sahe-logo.png" },
+    { "name": "AWS Logo Dark", "path": "/aws-logo.png" },
+    { "name": "AWS Logo White", "path": "/aws-logo-white.png" },
+    { "name": "Hero Background", "path": "/bg-hero.png" }
+  ]
+}

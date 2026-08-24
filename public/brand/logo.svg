@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 240" width="100%" height="100%">
+  <defs>
+    <!-- Purple Gradient -->
+    <linearGradient id="purpleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#c084fc" />
+      <stop offset="50%" stop-color="#a855f7" />
+      <stop offset="100%" stop-color="#7e22ce" />
+    </linearGradient>
+
+    <!-- Glow Filter -->
+    <filter id="purpleGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="800" height="240" rx="16" fill="#000000" />
+  <rect width="796" height="236" x="2" y="2" rx="14" fill="none" stroke="#a855f7" stroke-width="2" stroke-opacity="0.4" />
+
+  <!-- Brutalist Logo Icon Box -->
+  <g transform="translate(40, 40)">
+    <!-- Offset Shadow Box -->
+    <rect x="10" y="10" width="140" height="140" fill="#a855f7" />
+    
+    <!-- Main Black Icon Box -->
+    <rect x="0" y="0" width="140" height="140" fill="#0b0b0b" stroke="#ffffff" stroke-width="4" />
+    
+    <!-- Inner Diamond Graphic -->
+    <rect x="70" y="30" width="45" height="45" fill="none" stroke="#a855f7" stroke-width="4" transform="rotate(45 70 30)" filter="url(#purpleGlow)" />
+    
+    <!-- Center Terminal Slash Graphic -->
+    <path d="M 45 100 L 95 40" stroke="#ffffff" stroke-width="6" stroke-linecap="round" />
+    
+    <!-- AWS Accent Dots -->
+    <circle cx="45" cy="45" r="5" fill="#a855f7" />
+    <circle cx="95" cy="95" r="5" fill="#a855f7" />
+  </g>
+
+  <!-- Brand Typography -->
+  <g transform="translate(210, 85)">
+    <!-- Primary AWS Text -->
+    <text x="0" y="35" font-family="'Oswald', 'Bebas Neue', sans-serif" font-size="52" font-weight="800" fill="url(#purpleGradient)" letter-spacing="4">
+      AWS
+    </text>
+
+    <!-- STUDENT BUILDERS GROUP Text -->
+    <text x="110" y="35" font-family="'Oswald', 'Bebas Neue', sans-serif" font-size="44" font-weight="700" fill="#ffffff" letter-spacing="3">
+      STUDENT BUILDERS GROUP
+    </text>
+
+    <!-- SAHE Subline with Diamond Bullet -->
+    <g transform="translate(0, 70)">
+      <rect x="0" y="0" width="10" height="10" fill="#a855f7" transform="rotate(45 5 5)" />
+      <text x="24" y="10" font-family="'Space Grotesk', sans-serif" font-size="20" font-weight="600" fill="#d1d5db" letter-spacing="4">
+        SIDDHARTHA ACADEMY OF HIGHER EDUCATION, VIJAYAWADA
+      </text>
+    </g>
+  </g>
+</svg>

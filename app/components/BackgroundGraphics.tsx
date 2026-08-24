@@ -85,7 +85,7 @@ export default function BackgroundGraphics() {
             x2={line.x2}
             y2={line.y2}
             stroke="#a855f7"
-            strokeWidth="0.8"
+            strokeWidth={0.8}
             strokeLinecap="round"
             initial={{ pathLength: 0, opacity: 0 }}
             animate={{ pathLength: 1, opacity: 0.55 }}
