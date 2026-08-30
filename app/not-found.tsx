@@ -1,176 +1,318 @@
 "use client";
 
-import Link from "next/link";
-import { motion } from "framer-motion";
-import { Home, Compass, Users, Terminal, CloudOff, ArrowLeft } from "lucide-react";
+import { useRef, useState } from "react";
+import { useRouter } from "next/navigation";
+import {
+  motion,
+  useMotionValue,
+  useSpring,
+  useTransform,
+} from "framer-motion";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import TankGame404 from "./components/TankGame404";
+import {
+  staggerLetters,
+  letterUp,
+  staggerLettersBeyond,
+  letterUpBeyond,
+  xButton,
+  paragraph,
+  ctaContainer,
+  ctaButton,
+} from "./lib/motion-variants";
 
-const fadeIn = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] as const },
-  },
-};
+const errorLetters = "ERROR".split("");
+const code404Letters = "404".split("");
 
-const containerStagger = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.1 } },
-};
+function SlideButton({
+  label,
+  arrow,
+  fill,
+  idleText,
+  hoverText,
+  className = "",
+  style,
+  onClick,
+}: {
+  label: string;
+  arrow?: string;
+  fill: string;
+  idleText: string;
+  hoverText: string;
+  className?: string;
+  style?: React.CSSProperties;
+  onClick?: () => void;
+}) {
+  const [hovered, setHovered] = useState(false);
+
+  return (
+    <motion.button
+      style={style}
+      onClick={onClick}
+      className={`relative inline-flex cursor-pointer items-center justify-center overflow-hidden font-display text-lg uppercase leading-none outline-none focus-visible:ring-2 focus-visible:ring-[#a855f7] focus-visible:ring-offset-2 focus-visible:ring-offset-black ${className}`}
+      variants={ctaButton}
+      initial="hidden"
+      animate="visible"
+      onHoverStart={() => setHovered(true)}
+      onHoverEnd={() => setHovered(false)}
+      whileHover={{ y: -4, boxShadow: "0 0 24px rgba(168,85,247,0.4)" }}
+      whileTap={{ scale: 0.96 }}
+      transition={{ type: "spring", stiffness: 200, damping: 15 }}
+    >
+      <motion.span
+        aria-hidden
+        className="absolute inset-0"
+        style={{ backgroundColor: fill }}
+        initial={false}
+        animate={{ x: hovered ? "0%" : "100%" }}
+        transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+      />
+      <span
+        className="relative z-10"
+        style={{
+          color: hovered ? hoverText : idleText,
+          transition: "color 0.3s ease",
+        }}
+      >
+        {label}
+      </span>
+      {arrow && (
+        <motion.span
+          className="relative z-10 ml-1 inline-block"
+          style={{
+            color: hovered ? hoverText : idleText,
+            transition: "color 0.3s ease",
+          }}
+          animate={{ x: hovered ? 6 : 0 }}
+          transition={{ type: "spring", stiffness: 200, damping: 15 }}
+        >
+          {arrow}
+        </motion.span>
+      )}
+    </motion.button>
+  );
+}
 
 export default function NotFound() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const router = useRouter();
+
+  const xIconX = useMotionValue(0);
+  const xIconY = useMotionValue(0);
+  const xIconSmoothX = useSpring(xIconX, { damping: 30, stiffness: 200 });
+  const xIconSmoothY = useSpring(xIconY, { damping: 30, stiffness: 200 });
+
+  const tiltX = useTransform(xIconSmoothX, [-8, 8], [6, -6]);
+  const tiltY = useTransform(xIconSmoothY, [-8, 8], [6, -6]);
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!sectionRef.current) return;
+    const rect = sectionRef.current.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    xIconX.set(x * 16);
+    xIconY.set(y * 16);
+  };
+
+  const handleMouseLeave = () => {
+    xIconX.set(0);
+    xIconY.set(0);
+  };
+
   return (
-    <main className="relative min-h-screen bg-transparent text-white flex flex-col justify-between overflow-x-hidden">
+    <main className="relative min-h-screen bg-transparent text-white overflow-hidden flex flex-col justify-between">
+      <TankGame404 />
       <Navbar />
 
       <section
-        style={{
-          paddingLeft: "30px",
-          paddingRight: "30px",
-          paddingTop: "9rem",
-          paddingBottom: "5rem",
-          maxWidth: "1060px",
-          marginLeft: "auto",
-          marginRight: "auto",
-          width: "100%",
-        }}
-        className="flex-1 flex flex-col justify-center items-center text-center relative z-10"
+        ref={sectionRef}
+        className="relative min-h-screen bg-transparent text-white overflow-hidden flex-1 flex flex-col justify-center items-center"
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
       >
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={containerStagger}
-          className="w-full flex flex-col items-center"
-        >
-          {/* Neo-brutalist Error Badge */}
-          <motion.div variants={fadeIn}>
-            <span
-              className="font-display uppercase"
-              style={{
-                display: "inline-block",
-                backgroundColor: "#a855f7",
-                color: "#000000",
-                border: "3px solid #ffffff",
-                boxShadow: "6px 6px 0 0 #ffffff",
-                padding: "0.45rem 1.5rem",
-                transform: "rotate(-2deg)",
-                fontSize: "1rem",
-                letterSpacing: "0.25em",
-                fontWeight: 700,
-              }}
-            >
-              {"// ERROR 404"}
-            </span>
-          </motion.div>
+        {/* Background Image Matching Home Page */}
+        <div className="absolute inset-0 bg-[url('/bg-hero.png')] bg-cover bg-center bg-no-repeat opacity-25" />
 
-          {/* Large Animated 404 Hero Display */}
-          <motion.div
-            variants={fadeIn}
-            className="relative my-6 flex flex-col items-center"
+        {/* Ambient Radial Spotlights */}
+        <motion.div
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(circle at 20% 20%, rgba(168,85,247,0.18), transparent 45%), radial-gradient(circle at 80% 80%, rgba(168,85,247,0.10), transparent 50%)",
+          }}
+          animate={{ opacity: [0.6, 1, 0.6] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+        />
+
+        <div className="relative z-10 w-full">
+          <div
+            className="hero-top-pad flex min-h-screen max-w-[1536px] flex-col items-center justify-center"
+            style={{
+              marginLeft: "auto",
+              marginRight: "auto",
+              paddingLeft: "clamp(16px, 4vw, 30px)",
+              paddingRight: "clamp(16px, 4vw, 30px)",
+            }}
           >
-            <div className="relative inline-flex items-center justify-center">
-              <h1
-                className="font-display font-black uppercase text-white select-none"
+            <div className="hero-inner-top-pad max-w-[950px] text-center flex flex-col items-center gap-4 md:gap-0">
+              <motion.div
+                className="relative inline-block"
                 style={{
-                  fontSize: "clamp(5rem, 22vw, 13rem)",
-                  lineHeight: 0.9,
-                  letterSpacing: "-0.04em",
-                  textShadow: "0 0 40px rgba(168,85,247,0.35)",
+                  rotateX: tiltY,
+                  rotateY: tiltX,
+                  transformPerspective: 1000,
                 }}
               >
-                4<span className="text-[#a855f7]">0</span>4
-              </h1>
+                <div className="flex flex-col items-center">
+                  <div className="flex items-end justify-center gap-4 sm:gap-6">
+                    <motion.div
+                      className="overflow-hidden flex"
+                      variants={staggerLetters}
+                      initial="hidden"
+                      animate="visible"
+                    >
+                      {errorLetters.map((letter, i) => (
+                        <div
+                          key={i}
+                          className="overflow-hidden"
+                          style={i > 0 ? { marginLeft: "-0.04em" } : undefined}
+                        >
+                          <motion.span
+                            className="inline-block font-display text-[clamp(3.5rem,25vw,11rem)] font-black uppercase leading-none tracking-[-0.04em]"
+                            variants={letterUp}
+                          >
+                            {letter}
+                          </motion.span>
+                        </div>
+                      ))}
+                    </motion.div>
+
+                    <motion.button
+                      style={{
+                        marginBottom: "clamp(8px, 3vw, 20px)",
+                        x: xIconSmoothX,
+                        y: xIconSmoothY,
+                      }}
+                      className="flex h-10 w-10 items-center justify-center border border-[#a855f7] text-[#a855f7] outline-none focus-visible:ring-2 focus-visible:ring-[#a855f7] focus-visible:ring-offset-2 focus-visible:ring-offset-black sm:h-14 sm:w-14"
+                      variants={xButton}
+                      initial="hidden"
+                      animate="visible"
+                      whileHover={{
+                        rotate: 90,
+                        scale: 1.1,
+                        borderWidth: 2,
+                        boxShadow: "0 0 20px rgba(168,85,247,0.4)",
+                      }}
+                      whileTap={{ scale: 0.9 }}
+                      transition={{ type: "spring", stiffness: 300, damping: 15 }}
+                    >
+                      <motion.div
+                        animate={{ y: [0, -2, 0, 2, 0] }}
+                        transition={{
+                          duration: 4,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                          delay: 1,
+                        }}
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="h-5 w-5 sm:h-6 sm:w-6"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          strokeWidth={2}
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M6 6l12 12M18 6L6 18"
+                          />
+                        </svg>
+                      </motion.div>
+                    </motion.button>
+                  </div>
+
+                  <motion.div
+                    className="overflow-hidden flex justify-center"
+                    variants={staggerLettersBeyond}
+                    initial="hidden"
+                    animate="visible"
+                  >
+                    {code404Letters.map((letter, i) => (
+                      <div
+                        key={i}
+                        className="overflow-hidden"
+                        style={i > 0 ? { marginLeft: "-0.04em" } : undefined}
+                      >
+                        <motion.span
+                          style={{ marginTop: "clamp(-12px, -3vw, -20px)" }}
+                          className="inline-block font-display text-[clamp(3.5rem,25vw,11rem)] font-black uppercase leading-none tracking-[-0.04em] text-[#a855f7]"
+                          variants={letterUpBeyond}
+                        >
+                          {letter}
+                        </motion.span>
+                      </div>
+                    ))}
+                  </motion.div>
+                </div>
+              </motion.div>
+
               <motion.div
-                className="absolute -top-4 -right-4 sm:-top-6 sm:-right-8 bg-black border border-[#a855f7] rounded-lg px-3 py-1 text-[#a855f7] font-mono text-xs sm:text-sm flex items-center gap-1.5 shadow-[0_0_15px_rgba(168,85,247,0.4)]"
-                animate={{ y: [0, -6, 0] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                className="hero-caption-pad max-w-[650px]"
+                style={{ marginLeft: "auto", marginRight: "auto" }}
+                variants={paragraph}
+                initial="hidden"
+                animate="visible"
               >
-                <CloudOff size={16} />
-                <span>NoSuchEntity</span>
+                <p
+                  className="font-body uppercase text-gray-200"
+                  style={{
+                    fontSize: "clamp(0.875rem, 3.4vw, 1.125rem)",
+                    lineHeight: 1.9,
+                    letterSpacing: "0.14em",
+                  }}
+                >
+                  Resource Not Found // NoSuchEntityException — The cloud route you are searching for does not exist.
+                </p>
+              </motion.div>
+
+              <motion.div
+                className="hero-cta-pad flex items-center justify-center gap-3 sm:flex-row sm:gap-6"
+                variants={ctaContainer}
+                initial="hidden"
+                animate="visible"
+              >
+                <SlideButton
+                  label="Return Home"
+                  arrow="→"
+                  fill="#000000"
+                  idleText="#000000"
+                  hoverText="#a855f7"
+                  className="rounded-lg bg-[#a855f7]"
+                  style={{ padding: "14px clamp(20px, 5vw, 44px)" }}
+                  onClick={() => {
+                    router.push("/");
+                  }}
+                />
+
+                <SlideButton
+                  label="Explore Events"
+                  arrow="→"
+                  fill="#a855f7"
+                  idleText="#ffffff"
+                  hoverText="#000000"
+                  className="rounded-lg border border-[#a855f7] bg-transparent"
+                  style={{ padding: "14px clamp(20px, 5vw, 44px)" }}
+                  onClick={() => {
+                    router.push("/events");
+                  }}
+                />
               </motion.div>
             </div>
-
-            <p
-              className="font-display uppercase text-gray-200 mt-2"
-              style={{
-                fontSize: "clamp(1.25rem, 3.5vw, 2.25rem)",
-                lineHeight: 1.1,
-                letterSpacing: "0.04em",
-              }}
-            >
-              Resource Not Found
-            </p>
-          </motion.div>
-
-          {/* Simulated AWS CLI Error Terminal Box */}
-          <motion.div
-            variants={fadeIn}
-            style={{
-              backgroundColor: "rgba(13,8,24,0.9)",
-              border: "1.5px solid rgba(168,85,247,0.4)",
-              boxShadow: "10px 10px 0 0 #a855f7",
-              maxWidth: "680px",
-              width: "100%",
-            }}
-            className="rounded-xl p-5 text-left font-mono my-6 select-text overflow-x-auto"
-          >
-            <div className="flex items-center justify-between border-b border-purple-500/20 pb-3 mb-3">
-              <div className="flex items-center gap-2">
-                <span className="w-3 h-3 rounded-full bg-red-500/80 inline-block" />
-                <span className="w-3 h-3 rounded-full bg-yellow-500/80 inline-block" />
-                <span className="w-3 h-3 rounded-full bg-green-500/80 inline-block" />
-                <span className="text-xs text-gray-400 ml-2">aws-cli // terminal</span>
-              </div>
-              <Terminal size={14} className="text-[#a855f7]" />
-            </div>
-            <p className="text-xs sm:text-sm text-gray-300 leading-relaxed">
-              <span className="text-[#a855f7]">$</span> aws s3api get-object --bucket sahe-cloud --key 404.html
-            </p>
-            <p className="text-xs sm:text-sm text-red-400 mt-2 leading-relaxed">
-              An error occurred (ResourceNotFoundException) when calling the GetObject operation: The specified cloud endpoint or page route does not exist.
-            </p>
-          </motion.div>
-
-          {/* Descriptive Body Text */}
-          <motion.p
-            variants={fadeIn}
-            className="font-body text-gray-300 max-w-[540px] text-base leading-relaxed mb-8"
-          >
-            The path you are trying to reach has either been moved, renamed, or terminated from our AWS cluster. Return to base or explore active pages below.
-          </motion.p>
-
-          {/* Action Buttons */}
-          <motion.div
-            variants={fadeIn}
-            className="flex flex-wrap items-center justify-center gap-4 w-full max-w-[600px]"
-          >
-            <Link
-              href="/"
-              className="group relative inline-flex items-center justify-center gap-2 font-display uppercase text-lg px-7 py-3.5 bg-[#a855f7] text-black border-2 border-black rounded-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_24px_rgba(168,85,247,0.5)] active:scale-95 font-bold"
-            >
-              <Home size={18} />
-              <span>Return Home</span>
-            </Link>
-
-            <Link
-              href="/events"
-              className="group relative inline-flex items-center justify-center gap-2 font-display uppercase text-lg px-7 py-3.5 bg-black text-white border-2 border-[#a855f7] rounded-lg transition-all duration-300 hover:-translate-y-1 hover:bg-[#a855f7]/10 hover:shadow-[0_0_20px_rgba(168,85,247,0.3)] active:scale-95 font-bold"
-            >
-              <Compass size={18} className="text-[#a855f7]" />
-              <span>Explore Events</span>
-            </Link>
-
-            <Link
-              href="/team"
-              className="group relative inline-flex items-center justify-center gap-2 font-display uppercase text-lg px-7 py-3.5 bg-black text-white border-2 border-white/30 rounded-lg transition-all duration-300 hover:-translate-y-1 hover:border-white hover:shadow-[0_0_15px_rgba(255,255,255,0.2)] active:scale-95 font-bold"
-            >
-              <Users size={18} className="text-gray-300" />
-              <span>View Team</span>
-            </Link>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </section>
 
       <Footer />
