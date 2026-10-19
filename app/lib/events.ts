@@ -13,6 +13,22 @@ export interface EventSession {
   classes: string;
 }
 
+export type SpeakerLinkIcon = "website" | "linkedin" | "instagram";
+
+export interface SpeakerLink {
+  label: string;
+  href: string;
+  icon: SpeakerLinkIcon;
+}
+
+export interface EventSpeaker {
+  name: string;
+  tagline: string;
+  bio: string[];
+  credentials: string[];
+  links: SpeakerLink[];
+}
+
 export interface ClubEvent {
   id: string;
   title: string;
@@ -34,6 +50,7 @@ export interface ClubEvent {
   skills: string[];
   organizer: string;
   sessions?: EventSession[];
+  speaker?: EventSpeaker;
 }
 
 export const events: ClubEvent[] = [
@@ -42,7 +59,7 @@ export const events: ClubEvent[] = [
     title: "AWS CloudX Workshop",
     tagline:
       "A multi-day hands-on workshop on AWS Cloud for III B.Tech students, covering cloud fundamentals, Lambda, S3, and more.",
-    status: "ongoing",
+    status: "completed",
     category: "Workshop",
     date: "August 20 – 29, 2026",
     time: "9:00 AM – 4:30 PM",
@@ -117,6 +134,41 @@ export const events: ClubEvent[] = [
     ],
     skills: ["AWS EC2", "S3", "Lambda", "DynamoDB", "IAM", "API Gateway"],
     organizer: "AWS Student Builders Group, SAHE",
+    speaker: {
+      name: "Vishnu Rachapudi",
+      tagline: "From Java to Cloud · 24× Certified",
+      bio: [
+        "Vishnu Rachapudi is a 24× certified cloud professional and holds the prestigious AWS Golden Jacket (14×), alongside certifications from HashiCorp, CNCF, Oracle, NVIDIA, Anthropic, and Azure.",
+        "An AWS Community Builder, he is a sought-after speaker at AWS Summit, AWS Community Days, and GITEX Global, where he shares his journey from Java development to the cloud with student and professional audiences worldwide.",
+      ],
+      credentials: [
+        "AWS Golden Jacket (14×)",
+        "24× Certified",
+        "HashiCorp",
+        "CNCF",
+        "Oracle",
+        "NVIDIA",
+        "Anthropic",
+        "Azure",
+        "AWS Community Builder",
+        "Speaker — AWS Summit",
+        "Speaker — AWS Community Days",
+        "Speaker — GITEX Global",
+      ],
+      links: [
+        { label: "Website", href: "https://www.vishnurachapudi.com/", icon: "website" },
+        {
+          label: "LinkedIn",
+          href: "https://www.linkedin.com/in/vishnu-rachapudi-28956920b",
+          icon: "linkedin",
+        },
+        {
+          label: "Instagram",
+          href: "https://www.instagram.com/vishnurachapudi",
+          icon: "instagram",
+        },
+      ],
+    },
   },
 ];
 

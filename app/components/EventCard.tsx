@@ -20,18 +20,18 @@ export default function EventCard({
   const rotate = index % 2 === 0 ? -0.8 : 1;
 
   const cardStyle = {
-    backgroundColor: (event.status === "upcoming" || event.status === "ongoing") ? "#a855f7" : "#f5f5f5",
-    color: "#000000",
-    border: "2px solid #ffffff",
-    boxShadow: "6px 6px 0 0 #000000",
+    backgroundColor: (event.status === "upcoming" || event.status === "ongoing") ? "#a855f7" : "rgba(13,8,24,0.85)",
+    color: (event.status === "upcoming" || event.status === "ongoing") ? "#000000" : "#ffffff",
+    border: (event.status === "upcoming" || event.status === "ongoing") ? "2px solid #ffffff" : "1.5px solid rgba(168,85,247,0.4)",
+    boxShadow: (event.status === "upcoming" || event.status === "ongoing") ? "6px 6px 0 0 #000000" : "6px 6px 0 0 rgba(168,85,247,0.15)",
   };
 
   const onDark = event.status === "upcoming" || event.status === "ongoing";
 
   const chipStyle = {
-    border: "1.5px solid #000000",
-    backgroundColor: onDark ? "#000000" : "#ffffff",
-    color: onDark ? "#a855f7" : "#000000",
+    border: onDark ? "1.5px solid #000000" : "1px solid rgba(168,85,247,0.45)",
+    backgroundColor: onDark ? "#000000" : "rgba(168,85,247,0.1)",
+    color: "#a855f7",
   };
 
   return (
@@ -106,7 +106,7 @@ export default function EventCard({
             style={{
               fontSize: "0.72rem",
               letterSpacing: "0.1em",
-              color: onDark ? "rgba(0,0,0,0.85)" : "rgba(0,0,0,0.65)",
+              color: onDark ? "rgba(0,0,0,0.85)" : "rgba(255,255,255,0.6)",
               lineHeight: 1.7,
               marginBottom: "0.9rem",
               fontWeight: onDark ? 600 : 400,
@@ -148,7 +148,7 @@ export default function EventCard({
             style={{
               fontSize: "0.8rem",
               letterSpacing: "0.12em",
-              color: "#000000",
+              color: onDark ? "#000000" : "#a855f7",
               fontWeight: 700,
             }}
           >
