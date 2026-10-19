@@ -34,7 +34,7 @@ The AWS Student Builders Group is a student-led technology community dedicated t
 
 ### Core Departments
 1. **Technical & Cloud**: AWS architecture, serverless, containers, IAM, storage, and cloud-native deployments.
-2. **Web Designing**: Modern, responsive interfaces, UI/UX aesthetics, front-end design, and digital experiences.
+2. **Web Development**: Modern, responsive interfaces, UI/UX aesthetics, front-end design, and digital experiences.
 3. **Marketing**: Campaigns, social media engagement, brand outreach, and community growth.
 4. **Content Creation**: Technical blogs, tutorials, graphic assets, video content, and educational documentation.
 

@@ -97,7 +97,7 @@ const departments: Department[] = [
     ],
   },
   {
-    title: "Web Designing",
+    title: "Web Development",
     lead: {
       name: "K. Shritej",
       image: "/team/Shritej.png",
@@ -296,7 +296,7 @@ function MemberCard({
 export default function TeamPage() {
   const [selectedDept, setSelectedDept] = useState("ALL");
 
-  const deptFilters = ["ALL", "FACULTY", "LEADERSHIP", "TECHNICAL & CLOUD", "MARKETING", "WEB DESIGNING", "CONTENT CREATION"];
+  const deptFilters = ["ALL", "FACULTY", "LEADERSHIP", "TECHNICAL & CLOUD", "MARKETING", "WEB DEVELOPMENT", "CONTENT CREATION"];
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-transparent text-white">

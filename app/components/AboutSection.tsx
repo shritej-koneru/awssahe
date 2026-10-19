@@ -14,7 +14,7 @@ const fadeIn = {
 
 const departments = [
   { title: "Technical & Cloud", desc: "AWS architecture, serverless, containers, and cloud-native deployments." },
-  { title: "Web Designing", desc: "Modern, responsive interfaces with a focus on user experience and performance." },
+  { title: "Web Development", desc: "Modern, responsive interfaces with a focus on user experience and performance." },
   { title: "Marketing", desc: "Campaigns, social media, and community outreach that amplifies our reach." },
   { title: "Content Creation", desc: "Technical blogs, tutorials, and visual content that educates and inspires." },
 ];

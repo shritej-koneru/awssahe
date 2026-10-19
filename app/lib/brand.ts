@@ -63,7 +63,7 @@ export const brandData: BrandIdentity = {
       desc: "AWS architecture, serverless, containers, and cloud-native deployments.",
     },
     {
-      title: "Web Designing",
+      title: "Web Development",
       desc: "Modern, responsive interfaces with a focus on user experience and performance.",
     },
     {
